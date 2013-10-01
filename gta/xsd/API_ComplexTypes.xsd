@@ -1,0 +1,2781 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:include schemaLocation="API_SimpleTypes.xsd"/>
+	<xsd:include schemaLocation="API_Attributes.xsd"/>
+	<xsd:annotation>
+		<xsd:documentation>Copyright 2006 (c) Gullivers Travels Associates Ltd. All rights reserved.</xsd:documentation>
+	</xsd:annotation>
+	<xsd:complexType name="t_AddBookingItemRequest">
+		<xsd:sequence>
+			<xsd:element name="BookingReference" type="t_BookingReferenceInput"/>
+			<xsd:element name="BookingItems" type="t_BookingItems" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_AddBookingRequest">
+		<xsd:sequence>
+			<xsd:element name="BookingName" type="t_Input50" minOccurs="0" />
+			<xsd:element name="BookingReference" type="t_BookingReferenceInput" />
+			<xsd:element name="AgentReference" type="t_Input20" minOccurs="0" />
+			<xsd:element name="BookingDepartureDate" type="t_Date" minOccurs="0" />
+			<xsd:element name="PassengerEmail" type="t_EMailAddress" minOccurs="0" />
+			<xsd:element name="PaxNames" type="t_PaxNames" />
+			<xsd:element name="BookingItems" type="t_BookingItems" />
+			<xsd:element name="CreditCard" type="t_CreditCardDetails" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="Currency" type="t_CurrencyISOCode" use="optional" />
+	</xsd:complexType>
+	<xsd:complexType name="t_AdditionalInformation">
+		<xsd:sequence>
+			<xsd:element name="Information" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_AddressLines">
+		<xsd:sequence>
+			<xsd:element name="AddressLine1" type="t_AddressLine"/>
+			<xsd:element name="AddressLine2" type="t_AddressLine" minOccurs="0"/>
+			<xsd:element name="AddressLine3" type="t_AddressLine" minOccurs="0"/>
+			<xsd:element name="AddressLine4" type="t_AddressLine" minOccurs="0"/>
+			<xsd:element name="Telephone" type="t_Phone" minOccurs="0"/>
+			<xsd:element name="Fax" type="t_Phone" minOccurs="0"/>
+			<xsd:element name="EmailAddress" type="t_EMailAddress" minOccurs="0" />
+			<xsd:element name="WebSite" type="t_URL" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_Airport">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Name">
+				<xsd:attribute name="Code" type="t_AirportCode" use="optional"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_AirportDetail">
+		<xsd:sequence>
+			<xsd:element name="City" type="t_City"/>
+			<xsd:element name="Airport" type="t_Airport"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_AirportDetails">
+		<xsd:sequence>
+			<xsd:element name="AirportDetail" type="t_AirportDetail" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_AlternateAddress">
+		<xsd:sequence>
+			<xsd:element name="AddressLine1" type="t_AddressLine" minOccurs="0"/>
+			<xsd:element name="AddressLine2" type="t_AddressLine" minOccurs="0"/>
+			<xsd:element name="City" type="t_City" minOccurs="0"/>
+			<xsd:element name="County" type="t_AddressLine" minOccurs="0"/>
+			<xsd:element name="PostCode" type="t_PostCode" minOccurs="0"/>
+			<xsd:element name="Telephone" type="t_Phone" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_AOTNumbers">
+		<xsd:sequence>
+			<xsd:element name="International" type="t_Phone" minOccurs="0"/>
+			<xsd:element name="National" type="t_Phone" minOccurs="0"/>
+			<xsd:element name="Local" type="t_Phone" minOccurs="0"/>
+			<xsd:element name="OutOfOffice" type="t_Phone" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_ApartmentInformation">
+		<xsd:sequence>
+			<xsd:element name="AddressLines" type="t_AddressLines" minOccurs="0"/>
+			<xsd:element name="StarRating" type="t_StarRating" minOccurs="0"/>
+			<xsd:element name="Category" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="AreaDetails" type="t_AreaDetails" minOccurs="0"/>
+			<xsd:element name="ApartmentUnits" type="t_ApartmentUnits" minOccurs="0"/>
+			<xsd:element name="Reports" type="t_Reports" minOccurs="0"/>
+			<xsd:element name="Facilities" type="t_Facilities" minOccurs="0"/>
+			<xsd:element name="Links" type="t_Links" minOccurs="0"/>
+			<xsd:element name="ImportantNotes" type="t_ImportantNotes" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_Apartment">
+		<xsd:sequence>
+			<xsd:element name="City" type="t_City"/>
+			<xsd:element name="Item" type="t_Item"/>
+			<xsd:element name="LocationDetails" type="t_LocationDetails" minOccurs="0"/>
+			<xsd:element name="StarRating" type="t_StarRating" minOccurs="0"/>
+			<xsd:element name="CheckInDays" type="t_CheckInDays" minOccurs="0"/>
+			<xsd:element name="PeriodOfStay" type="t_PeriodOfStay" minOccurs="0"/>
+			<xsd:element name="EssentialInformation" type="t_EssentialInformation" minOccurs="0"/>
+			<xsd:element name="ApartmentUnits" type="t_ApartmentUnits" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attributeGroup ref="a_Hotel"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_ApartmentBreakdownUnit">
+		<xsd:attributeGroup ref="a_Apartment" />
+	</xsd:complexType>	
+	<xsd:complexType name="t_ApartmentPriceBreakdownRequest">
+		<xsd:all>
+			<xsd:element name="City" type="t_CityCode" />
+			<xsd:element name="Item" type="t_Item" />
+			<xsd:element name="PeriodOfStay" type="t_PeriodOfStay" />
+			<xsd:element name="ApartmentUnit" type="t_ApartmentBreakdownUnit" />
+			<xsd:element name="ItemSupplements" type="t_ItemSupplementsBreakdown" minOccurs="0"/>
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="t_ApartmentPriceBreakdownResponse">
+		<xsd:sequence>
+			<xsd:choice maxOccurs="1" minOccurs="0">
+				<xsd:sequence>
+					<xsd:element name="ItemCity" type="t_City" />
+					<xsd:element name="Item" type="t_Item" />
+					<xsd:element name="ItemPrice" type="t_BookingPrice" />
+					<xsd:element name="ApartmentItem" type="t_ApartmentItemPriceBreakdown" />
+				</xsd:sequence>
+				<xsd:element name="Errors" type="t_Errors" />
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_ApartmentDetails">
+		<xsd:sequence>
+			<xsd:element name="Apartment" type="t_Apartment" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_ApartmentItem">
+		<xsd:sequence>
+			<xsd:element name="UnitCode" type="t_ApartmentCode"/>
+			<xsd:element name="NumberOfCots" type="t_NumberOfCots" minOccurs="0"/>
+			<xsd:element name="PeriodOfStay" type="t_PeriodOfStay"/>
+			<xsd:element name="ArrivalDate" type="t_Date" minOccurs="0"/>
+			<xsd:element name="Meals" type="t_Meals" minOccurs="0"/>
+			<xsd:element name="PaxIds" type="t_PaxIds"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_ApartmentItemPriceBreakdown">
+		<xsd:sequence>
+			<xsd:element name="PeriodOfStay" type="t_PeriodOfStay" />
+			<xsd:element name="ApartmentUnits" type="t_ApartmentUnitsPriceBreakdown" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>		
+	<xsd:complexType name="t_ApartmentUnit">
+		<xsd:sequence>
+			<xsd:element name="ApartmentUnitName" type="t_ApartmentUnitName" minOccurs="0" />
+			<xsd:element name="Meals" type="t_Meals" minOccurs="0"/>
+			<xsd:element name="UnitPrice" type="t_PriceDetails" minOccurs="0"/>
+			<xsd:element name="Confirmation" type="t_ItemConfirmation" minOccurs="0"/>
+			<xsd:element name="ApartmentUnitRooms" type="t_ApartmentUnitRooms" minOccurs="0"/>
+			<xsd:element name="ApartmentUnitFacilities" type="t_ApartmentUnitFacilities" minOccurs="0"/>
+			<xsd:element name="Links" type="t_Links" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attributeGroup ref="a_Apartment"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_ApartmentUnitName">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Name">
+				<xsd:attribute name="Code" type="t_ApartmentUnitCode" use="optional" />
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>		
+	<xsd:complexType name="t_ApartmentUnitsPriceBreakdown">
+		<xsd:sequence>
+			<xsd:element name="ApartmentUnit" type="t_ApartmentUnitPriceBreakdown" maxOccurs="9" />
+			<xsd:element name="ItemSupplements" type="t_ItemSupplements" minOccurs="0" />			
+		</xsd:sequence>
+	</xsd:complexType>		
+	<xsd:complexType name="t_ApartmentUnitFacilities">
+		<xsd:sequence>
+			<xsd:element name="Facility" type="t_Facility" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_ApartmentUnitRooms">
+		<xsd:sequence>
+			<xsd:element name="UnitRoom" type="t_UnitRoom" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_ApartmentUnits">
+		<xsd:sequence>
+			<xsd:element name="ApartmentUnit" type="t_ApartmentUnit" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_ApartmentUnitPriceBreakdown">
+		<xsd:sequence>
+			<xsd:element name="UnitPrice" type="t_BookingPrice" minOccurs="0" />
+			<xsd:element name="PriceRanges" type="t_PriceRanges" minOccurs="0" />
+		</xsd:sequence>
+		<xsd:attributeGroup ref="a_Room" />
+	</xsd:complexType>	
+	<xsd:complexType name="t_Area">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Name">
+				<xsd:attribute name="Code" type="t_AreaCode" use="optional"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_AreaDetails">
+		<xsd:choice maxOccurs="1">
+			<xsd:sequence>
+				<xsd:element name="Area" type="t_Area" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="AreaDetail" type="t_Name" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="t_AssistanceLanguage">
+		<xsd:sequence>
+			<xsd:element name="Language" type="t_Language"/>
+			<xsd:element name="OfficeHours" type="xsd:string"/>
+			<xsd:element name="AOTNumbers" type="t_AOTNumbers"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_AssistanceLanguages">
+		<xsd:sequence>
+			<xsd:element name="AssistanceLanguage" type="t_AssistanceLanguage" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_Availability">
+		<xsd:sequence>
+			<xsd:element name="DateRange" type="t_DateRange" minOccurs="0"/>
+			<xsd:element name="Confirmation" type="t_ItemConfirmation" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+    <xsd:complexType name="t_AvailabilityCacheRequest">
+        <xsd:sequence>
+            <xsd:element name="ItemDestinations" type="t_ItemDestinations" minOccurs="1"/>
+            <xsd:element name="DateRange" type="t_DateRange" minOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="t_AvailabilityCacheResponse">
+        <xsd:sequence>
+            <xsd:element name="Hotels" type="t_Hotels" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="Errors" type="t_Errors" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+	<xsd:complexType name="t_AvailableRoom">
+		<xsd:attributeGroup ref="a_AvailableRoom"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_AvailableRooms">
+		<xsd:sequence>
+			<xsd:element name="Room" type="t_AvailableRoom" maxOccurs="4"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_Booking">
+		<xsd:sequence>
+			<xsd:element name="BookingReferences" type="t_BookingReferences" />
+			<xsd:element name="BookingCreationDate" type="t_Date" minOccurs="0" />
+			<xsd:element name="BookingDepartureDate" type="t_Date" />
+			<xsd:element name="BookingName" type="t_Name" minOccurs="0" />
+			<xsd:element name="PassengerEmail" type="t_EMailAddress" minOccurs="0" />			
+			<xsd:element name="BookingPrice" type="t_BookingPrice" minOccurs="0" />
+			<xsd:element name="BookingFee" type="t_PriceDetails" minOccurs="0" />
+			<xsd:element name="BookingStatus" type="t_Status" minOccurs="0" />
+	 		<xsd:element name="BookingRemarks" type="t_BookingRemarks" minOccurs="0" />
+			<xsd:element name="BookingPaymentStatus" type="t_PaymentStatus" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_Bookings">
+		<xsd:sequence>
+			<xsd:element name="Booking" type="t_Booking" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_BookingItem">
+		<xsd:sequence>
+			<xsd:element name="ItemReference" type="t_ItemReference" />
+			<xsd:element name="ItemCity" type="t_ItemCity" />
+			<xsd:element name="Item" type="t_Item" />
+			<xsd:element name="ItemPrice" type="t_BookingPrice" minOccurs="0" />
+			<xsd:element name="Offer" type="t_Offer" minOccurs="0" />
+			<xsd:element name="ItemFee" type="t_PriceDetails" minOccurs="0" />
+			<xsd:element name="ItemStatus" type="t_Status" minOccurs="0" />
+			<xsd:element name="ItemConfirmationReference" type="t_Name" minOccurs="0" />
+			<xsd:element name="ItemRemarks" type="t_ItemRemarks" minOccurs="0" />
+			<xsd:element name="ItemSupplements" type="t_ItemSupplements" minOccurs="0" />
+			<xsd:element name="ItemPayableBy" type="t_Name" minOccurs="0" />
+			<xsd:element name="EssentialInformation" type="t_EssentialInformation" minOccurs="0"/>
+			<xsd:choice minOccurs="0" maxOccurs="1">
+				<xsd:element name="ApartmentItem" type="t_ApartmentItem" />
+				<xsd:element name="HotelItem" type="t_HotelItem" />
+				<xsd:element name="SightseeingItem" type="t_SightseeingItem" />
+				<xsd:element name="TransferItem" type="t_TransferItem" />
+			</xsd:choice>
+			<xsd:element name="ChargeConditions" type="t_ChargeConditions"  minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="ItemType" type="t_ItemType" use="required" />
+	</xsd:complexType>
+	<xsd:complexType name="t_BookingItemPriceBreakdown">
+		<xsd:sequence>
+			<xsd:element name="ItemReference" type="t_ItemReference"/>
+			<xsd:element name="ItemCity" type="t_ItemCity"/>
+			<xsd:element name="Item" type="t_Item"/>
+			<xsd:element name="ItemPrice" type="t_BookingPrice"/>
+			<xsd:element name="Offer" type="t_Offer" minOccurs="0" />
+			<xsd:choice minOccurs="0" maxOccurs="1">
+				<xsd:element name="HotelItem" type="t_HotelItemPriceBreakdown"/>
+				<xsd:element name="ApartmentItem" type="t_ApartmentItemPriceBreakdown" />
+				<xsd:element name="SightseeingItem" type="t_SightseeingItemPriceBreakdown" />				
+			</xsd:choice>
+		</xsd:sequence>
+		<xsd:attribute name="ItemType" type="t_ItemType" use="required"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_BookingItemPriceBreakdownResponse">
+		<xsd:sequence>
+			<xsd:choice maxOccurs="1">
+				<xsd:sequence>
+					<xsd:element name="BookingReferences" type="t_BookingReferences"/>
+					<xsd:element name="BookingItem" type="t_BookingItemPriceBreakdown"/>
+				</xsd:sequence>
+				<xsd:element name="Errors" type="t_Errors"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_BookingItems">
+		<xsd:sequence>
+			<xsd:element name="BookingItem" type="t_BookingItem" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_BookingPrice">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attributeGroup ref="a_PriceDetails"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_BookingReference">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Reference">
+				<xsd:attribute name="ReferenceSource" type="t_ReferenceSource" use="optional"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_BookingReferenceInput">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Reference">
+				<xsd:attribute name="ReferenceSource" type="t_ReferenceSourceInput" use="optional"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_BookingReferences">
+		<xsd:sequence>
+			<xsd:element name="BookingReference" type="t_BookingReference" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_BookingRemarks">
+		<xsd:sequence>
+			<xsd:element name="BookingRemark" type="t_Remark" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_Breakfast">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Name">
+				<xsd:attribute name="Code" type="t_BreakfastTypeCode"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_BreakfastTypeDetails">
+		<xsd:sequence>
+			<xsd:element name="BreakfastType" type="t_Breakfast" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+    <xsd:complexType name="t_CacheAvailability">
+        <xsd:sequence>
+            <xsd:element name="Room" type="t_CacheRoomAvailability" minOccurs="0"  maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="t_CacheHotel">
+        <xsd:sequence>
+            <xsd:element name="Nights" type="t_Nights" minOccurs="0"/>
+            <xsd:element name="SpecialOffers" type="t_SpecialOffers" minOccurs="0"/>
+        </xsd:sequence>
+        <xsd:attributeGroup ref="a_CacheHotel"/>
+    </xsd:complexType>
+    <xsd:complexType name="t_CacheItemDestination">
+        <xsd:simpleContent>
+            <xsd:extension base="t_Name">
+                <xsd:attributeGroup ref="a_CacheItemDestination"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="t_CacheRates">
+        <xsd:sequence>
+            <xsd:element name="Rate" type="t_Rate" minOccurs="0"  maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="t_CacheRoomAvailability">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attributeGroup ref="a_CacheRoomPrice"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+    <xsd:complexType name="t_CacheRoomPrice">
+        <xsd:sequence>
+            <xsd:element name="Prices" type="t_RoomPrices" minOccurs="0"/>            
+            <xsd:element name="Offers" type="t_CacheOffers" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+        <xsd:attributeGroup ref="a_CacheRoomPrice"/>
+    </xsd:complexType>
+	<xsd:complexType name="t_CancelBookingItemRequest">
+		<xsd:sequence>
+			<xsd:element name="BookingReference" type="t_BookingReferenceInput"/>
+			<xsd:element name="ItemReferences" type="t_ItemReferences"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_CancelBookingRequest">
+		<xsd:sequence>
+			<xsd:element name="BookingReference" type="t_BookingReferenceInput"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_DICancelConditions">
+		<xsd:sequence>
+			<xsd:element name="Conditions" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_ChargeCondition">
+		<xsd:sequence>
+			<xsd:element name="Condition" type="t_Condition" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attributeGroup ref="a_ChargeCondition"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_ChargeConditions">
+		<xsd:sequence>
+			<xsd:element name="ChargeCondition" type="t_ChargeCondition" minOccurs="0" maxOccurs="unbounded" />
+			<xsd:element name="PossibleLeadTimeRestrictions" type="t_PossibleLeadTimeRestrictions" minOccurs="0" />
+			<xsd:element name="PassengerNameChange" type="t_PassengerNameChange" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_ChargeConditionsApartment">
+		<xsd:sequence>
+			<xsd:element name="City" type="t_CityCode"/>
+			<xsd:element name="Item" type="t_HotelCode"/>
+			<xsd:element name="UnitCode" type="t_ApartmentCode"/>
+			<xsd:element name="PeriodOfStay" type="t_PeriodOfStay"/>
+			<xsd:element name="Occupancy" type="t_Occupancy"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_ChargeConditionsBookingItem">
+		<xsd:complexContent>
+			<xsd:extension base="t_SearchBookingItemRequest"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_ChargeConditionsHotel">
+		<xsd:complexContent>
+			<xsd:extension base="t_HotelPriceBreakdownRequest"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_ChargeConditionsSightseeing">
+		<xsd:sequence>
+			<xsd:element name="City" type="t_CityCode"/>
+			<xsd:element name="Item" type="t_Item"/>
+			<xsd:element name="TourDate" type="t_Date"/>
+			<xsd:element name="TourLanguage" type="t_LanguageCode" minOccurs="0"/>
+			<xsd:element name="TourLanguageList" type="t_LanguageListCode" minOccurs="0"/>
+			<xsd:element name="SpecialCode" type="t_SpecialCode" minOccurs="0"/>
+			<xsd:element name="NumberOfAdults" type="t_NumberOfAdults"/>
+			<xsd:element name="Children" type="t_Children" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_ChargeConditionsTransfer">
+		<xsd:sequence>
+			<xsd:element name="City" type="t_CityCode"/>
+			<xsd:element name="Item" type="t_Item"/>
+			<xsd:element name="TransferDate" type="t_Date"/>
+			<xsd:element name="TransferTime" type="t_Time" minOccurs="0"/>
+			<xsd:element name="TransferLanguage" type="t_Language" minOccurs="0"/>
+			<xsd:element name="Vehicle" type="t_Vehicle" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_CheckInDay">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Name">
+				<xsd:attribute name="Code" type="t_DayCode"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_CheckInDays">
+		<xsd:sequence>
+			<xsd:element name="CheckInDay" type="t_CheckInDay" minOccurs="1" maxOccurs="7" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_Children">
+		<xsd:sequence>
+			<xsd:element name="Age" type="t_ChildAge" minOccurs="0" maxOccurs="9"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_City">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Name">
+				<xsd:attribute name="Code" type="t_CityCode" use="optional"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_CityDetails">
+		<xsd:sequence>
+			<xsd:element name="City" type="t_City" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_CityPoint">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Name">
+				<xsd:attribute name="Code" type="t_CityPointCode" use="optional"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_ClosedDates">
+		<xsd:sequence>
+			<xsd:element name="ClosedDate" type="t_Date" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_Commentary">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Name">
+				<xsd:attribute name="Code" type="t_CommentaryCode" use="optional"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_Condition">
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attributeGroup ref="a_Condition"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_ContactDetails">
+		<xsd:sequence>
+			<xsd:element name="Destination" type="t_DestinationCountry" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_ControlListDetails">
+		<xsd:sequence>
+			<xsd:element name="Description" type="t_Description" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_Country">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Name">
+				<xsd:attribute name="Code" type="t_CountryCode" use="optional"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_CountryDetails">
+		<xsd:sequence>
+			<xsd:element name="Country" type="t_Country" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_CreditCardDetails">
+		<xsd:sequence>
+			<xsd:element name="CardHolderName" type="t_Name" />
+			<xsd:element name="AddressLine1" type="t_AddressLine" />
+			<xsd:element name="AddressLine2" type="t_AddressLine" minOccurs="0"/>
+			<xsd:element name="CityName" type="t_City" />
+			<xsd:element name="State" type="t_StateCode" minOccurs="0"/>
+			<xsd:element name="Zip" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="Country" type="t_CountryISOCode" />
+			<xsd:element name="CardNumber" type="t_CreditCardNumber" />
+			<xsd:element name="CardCV2" type="t_CreditCardCV2" minOccurs="0"/>
+			<xsd:element name="ExpiryMonth" type="t_CreditCardDateMonth" />
+			<xsd:element name="ExpiryYear" type="t_CreditCardDateYear" />
+			<xsd:element name="ValidMonth" type="t_CreditCardDateMonth" minOccurs="0" />
+			<xsd:element name="ValidYear" type="t_CreditCardDateYear" minOccurs="0" />
+			<xsd:element name="CardIssueNumber" type="xsd:int" minOccurs="0" />
+		</xsd:sequence>
+		<xsd:attribute name="CardType" type="t_CreditCardType" />
+	</xsd:complexType>
+	<xsd:complexType name="t_Currency">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Name">
+				<xsd:attribute name="Code" type="t_CurrencyCode" use="optional"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+    <xsd:complexType name="t_CurrencyCodes">
+        <xsd:sequence>
+            <xsd:element name="CurrencyCode" type="t_CurrencyISOCode" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+	<xsd:complexType name="t_CurrencyDetails">
+		<xsd:sequence>
+			<xsd:element name="Currency" type="t_Currency" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_DateRange">
+		<xsd:sequence>
+			<xsd:element name="FromDate" type="t_Date" minOccurs="0"/>
+			<xsd:element name="ToDate" type="t_Date" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attributeGroup ref="a_DateRange"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_Departure">
+		<xsd:sequence>
+			<xsd:element name="Time" type="t_Time" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="DeparturePoint" type="t_DeparturePoint" minOccurs="0"/>
+			<xsd:element name="Description" type="xsd:string" minOccurs="0" />
+			<xsd:element name="FirstService" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="LastService" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="Intervals" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="AddressLines" type="t_AddressLines" minOccurs="0" />
+			<xsd:element name="Telephone" type="t_Phone" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_DeparturePoint">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Name">
+				<xsd:attributeGroup ref="a_DeparturePoint"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_Departures">
+		<xsd:sequence>
+			<xsd:element name="Departure" type="t_Departure" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_DepartureTime">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Time">
+				<xsd:attributeGroup ref="a_DepartureTime" /> 
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>	
+	<xsd:complexType name="t_Description">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Name">
+				<xsd:attribute name="Code" type="t_ListCode" use="optional"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_Destination">
+		<xsd:sequence>
+			<xsd:element name="City" type="t_City"/>
+			<xsd:element name="Airport" type="t_Airport"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_DestinationCountry">
+		<xsd:sequence>
+			<xsd:element name="Description" type="t_Description" minOccurs="0" maxOccurs="1" />
+			<xsd:element name="Offices" type="t_Offices" minOccurs="0" maxOccurs="1" />
+		</xsd:sequence>
+		<xsd:attribute name="Code" type="t_CountryCode" use="required"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_DropOffAccommodation">
+		<xsd:sequence>
+			<xsd:choice minOccurs="0" maxOccurs="1">
+				<xsd:element name="DropOffTo" type="t_Where"/>
+				<xsd:element name="DropOffAddress" type="t_AlternateAddress"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_DropOffAirport">
+		<xsd:sequence>
+			<xsd:element name="Airport" type="t_Airport" minOccurs="0"/>
+			<xsd:element name="DepartingTo" type="t_Where" minOccurs="0"/>
+			<xsd:element name="FlightNumber" type="t_FlightNumber" minOccurs="0"/>
+			<xsd:element name="DepartureTime" type="t_DepartureTime" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_DropOffDetails">
+		<xsd:sequence>
+			<xsd:element name="DropOff" type="t_TransferPointLocation" minOccurs="0"/>
+			<xsd:choice minOccurs="0" maxOccurs="1">
+				<xsd:element name="Area" type="t_Area"/>
+				<xsd:element name="City" type="t_City"/>
+				<xsd:element name="Airport" type="t_Airport"/>
+			</xsd:choice>
+			<xsd:choice minOccurs="0" maxOccurs="1">
+				<xsd:element name="DropOffAirport" type="t_DropOffAirport"/>
+				<xsd:element name="DropOffAccommodation" type="t_DropOffAccommodation"/>
+				<xsd:element name="DropOffPort" type="t_DropOffPort"/>
+				<xsd:element name="DropOffStation" type="t_DropOffStation"/>
+				<xsd:element name="DropOffOther" type="t_DropOffOther"/>
+			</xsd:choice>
+			<xsd:element name="DropOffPoints" type="t_DropOffPoints" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="DropOffPointAllowed" type="xsd:boolean" use="optional"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_DropOffOther">
+		<xsd:sequence>
+			<xsd:choice minOccurs="0" maxOccurs="1">
+				<xsd:element name="DropOffTo" type="t_Where"/>
+				<xsd:element name="DropOffAddress" type="t_AlternateAddress"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_DropOffPoints">
+		<xsd:sequence>
+			<xsd:element name="DropOffPoint" type="t_MeetingPoint" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_DropOffPort">
+		<xsd:sequence>
+			<xsd:element name="City" type="t_City" minOccurs="0"/>
+			<xsd:element name="DepartingTo" type="t_Input50" minOccurs="0"/>
+			<xsd:element name="ShipName" type="t_Input50" minOccurs="0"/>
+			<xsd:element name="ShippingCompany" type="t_Input50" minOccurs="0"/>
+			<xsd:element name="DepartureTime" type="t_DepartureTime" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_DropOffStation">
+		<xsd:sequence>
+			<xsd:element name="Station" type="t_Station" minOccurs="0"/>
+			<xsd:element name="DepartingTo" type="t_Where" minOccurs="0"/>
+			<xsd:element name="TrainName" type="t_Input50" minOccurs="0"/>
+			<xsd:element name="DepartureTime" type="t_DepartureTime" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_ErrorContext">
+		<xsd:attributeGroup ref="a_ErrorContext"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_Empty"/>
+	<xsd:complexType name="t_Error">
+		<xsd:sequence>
+			<xsd:element name="ErrorId" type="t_ErrorId"/>
+			<xsd:element name="ErrorText" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="ErrorContext" type="t_ErrorContext" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_Errors">
+		<xsd:sequence>
+			<xsd:element name="Error" type="t_Error" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_EssentialInformation">
+		<xsd:sequence>
+			<xsd:element name="Information" type="t_Information" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_EssentialInformationDetail">
+		<xsd:sequence>
+			<xsd:element name="City" type="t_City"/>
+			<xsd:element name="Item" type="t_Item"/>
+			<xsd:element name="EssentialInformation" type="t_EssentialInformation"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_EssentialInformationDetails">
+		<xsd:sequence>
+			<xsd:element name="EssentialInformationDetail" type="t_EssentialInformationDetail" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_ExtraBeds">
+		<xsd:sequence>
+			<xsd:element name="Age" type="t_ChildAge" minOccurs="0" maxOccurs="4"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_Facility">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Name">
+				<xsd:attribute name="Code" type="t_FacilityCode" use="optional"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_Facilities">
+		<xsd:sequence>
+			<xsd:element name="Facility" type="t_Facility" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_FacilityCodes">
+		<xsd:sequence>
+			<xsd:element name="FacilityCode" type="t_FacilityCode" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_FacilityDetails">
+		<xsd:sequence>
+			<xsd:element name="Facility" type="t_Facility" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_FlashLinks">
+		<xsd:sequence>
+			<xsd:element name="FlashLink" type="t_Name" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_Frequency">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Name">
+				<xsd:attribute name="Code" type="t_FrequencyCode" use="optional"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_NameWithCode">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Name">
+				<xsd:attribute name="Code" type="t_GenericCode" />
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_GeoCodes">
+		<xsd:sequence>
+			<xsd:element name="Latitude" type="t_Coordinate" minOccurs="1" />
+			<xsd:element name="Longitude" type="t_Coordinate" minOccurs="1" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_GroupDetails">
+		<xsd:sequence>
+			<xsd:element name="Country" type="t_Country"/>
+			<xsd:element name="City" type="t_City"/>
+			<xsd:element name="HotelGroup" type="t_Item"/>
+			<xsd:element name="GroupItem" type="t_GroupItem" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_GroupHotelDetails">
+		<xsd:sequence>
+			<xsd:element name="GroupDetails" type="t_GroupDetails" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_GroupItem">
+		<xsd:sequence>
+			<xsd:element name="Item" type="t_Item"/>
+			<xsd:element name="RoomCategory" type="t_Item" />
+		</xsd:sequence>
+		<xsd:attribute name="PrimaryHotel" type="xsd:boolean" use="optional"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_Hotel">
+		<xsd:sequence>
+			<xsd:element name="City" type="t_City"/>
+			<xsd:element name="Item" type="t_Item"/>
+			<xsd:element name="LocationDetails" type="t_LocationDetails" minOccurs="0"/>
+			<xsd:element name="StarRating" type="t_StarRating" minOccurs="0"/>
+			<xsd:element name="HotelRoomPrices" type="t_HotelRoomsPriceBreakdown" minOccurs="0"/> 
+			<xsd:element name="HotelRooms" type="t_ResponseHotelRooms" minOccurs="0"/>
+            <xsd:element name="RoomCategories" type="t_RoomCategories" minOccurs="0"/>
+			<xsd:element name="Meals" type="t_Meals" minOccurs="0"/>
+			<xsd:element name="RoomAvailability" type="t_RoomAvailability" minOccurs="0"/>
+			<xsd:element name="ItemPrice" type="t_PriceDetails" minOccurs="0"/>
+			<xsd:element name="Offer" type="t_Offer" minOccurs="0" />
+			<xsd:element name="Confirmation" type="t_ItemConfirmation" minOccurs="0"/>
+			<xsd:element name="EssentialInformation" type="t_EssentialInformation" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attributeGroup ref="a_Hotel"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_HotelDetails">
+		<xsd:sequence>
+			<xsd:element name="Hotel" type="t_Hotel" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_HotelInformation">
+		<xsd:sequence>
+			<xsd:element name="AddressLines" type="t_AddressLines" minOccurs="0"/>
+			<xsd:element name="StarRating" type="t_StarRating" minOccurs="0"/>
+			<xsd:element name="Category" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="AreaDetails" type="t_AreaDetails" minOccurs="0"/>
+			<xsd:element name="Reports" type="t_Reports" minOccurs="0"/>
+			<xsd:element name="RoomCategories" type="t_RoomCategories" minOccurs="0"/>
+			<xsd:element name="RoomTypes" type="t_RoomTypes" minOccurs="0"/>
+			<xsd:element name="RoomFacilities" type="t_Facilities" minOccurs="0"/>
+			<xsd:element name="Facilities" type="t_Facilities" minOccurs="0"/>
+			<xsd:element name="Links" type="t_Links" minOccurs="0"/>
+			<xsd:element name="GeoCodes" type="t_GeoCodes" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_HotelItem">
+		<xsd:sequence>
+			<xsd:element name="AlternativesAllowed" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="PeriodOfStay" type="t_PeriodOfStay"/>
+			<xsd:element name="HotelRooms" type="t_HotelRooms"/>
+			<xsd:element name="Meals" type="t_Meals" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_HotelItemPriceBreakdown">
+		<xsd:sequence>
+			<xsd:element name="PeriodOfStay" type="t_PeriodOfStay"/>
+			<xsd:element name="HotelRooms" type="t_HotelRoomsPriceBreakdown" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_HotelPriceBreakdownRequest">
+		<xsd:sequence>
+			<xsd:element name="City" type="t_CityCode"/>
+			<xsd:element name="Item" type="t_HotelCode"/>
+			<xsd:element name="PeriodOfStay" type="t_PeriodOfStay"/>
+			<xsd:element name="Rooms" type="t_Rooms"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_HotelPriceBreakdownResponse">
+		<xsd:sequence>
+			<xsd:choice minOccurs="0" maxOccurs="1">
+				<xsd:sequence>
+					<xsd:element name="ItemCity" type="t_City"/>
+					<xsd:element name="Item" type="t_Item"/>
+					<xsd:element name="ItemPrice" type="t_BookingPrice"/>
+					<xsd:element name="Offer" type="t_Offer" minOccurs="0" />
+					<xsd:element name="HotelItem" type="t_HotelItemPriceBreakdown"/>
+				</xsd:sequence>
+				<xsd:element name="Errors" type="t_Errors"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_HotelRoom">
+		<xsd:sequence>
+            <xsd:element name="Description" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="PaxIds" type="t_PaxIds" />
+		</xsd:sequence>
+		<xsd:attributeGroup ref="a_HotelRoom"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_HotelRoomPriceBreakdown">
+		<xsd:sequence>
+			<xsd:element name="RoomPrice" type="t_BookingPrice" minOccurs="0"/>
+			<xsd:element name="PriceRanges" type="t_PriceRanges" minOccurs="0"/>
+			<xsd:element name="Offer" type="t_Offer" minOccurs="0" /> 
+			<xsd:element name="Confirmation" type="t_ItemConfirmation" minOccurs="0"/> 
+		</xsd:sequence>
+		<xsd:attributeGroup ref="a_Room"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_HotelRooms">
+		<xsd:sequence>
+			<xsd:element name="HotelRoom" type="t_HotelRoom" maxOccurs="9"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_HotelRoomsPriceBreakdown">
+		<xsd:sequence>
+			<xsd:element name="HotelRoom" type="t_HotelRoomPriceBreakdown" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_PaymentMethod">
+		<xsd:sequence>
+			<xsd:element name="Payment" type="t_Payment" minOccurs="1"/>
+			<xsd:element name="CreditCards" type="t_CreditCards" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_Payment">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Name">
+				<xsd:attribute name="Code" type="t_PaymentCode" use="required"/>
+				<xsd:attribute name="TakeNett" type="xsd:boolean" use="required"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_CreditCards">
+		<xsd:sequence>
+			<xsd:element name="CreditCard" type="t_Name" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+    <xsd:complexType name="t_Hotels">
+        <xsd:sequence>
+            <xsd:element name="PriceType" type="t_PriceType" minOccurs="0"/>
+            <xsd:element name="ImmediateConfirmationOnly" type="t_Empty" minOccurs="0"/>
+            <xsd:element name="Hotel" type="t_CacheHotel" minOccurs="0"  maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+	<xsd:complexType name="t_ImageLink">
+		<xsd:sequence>
+			<xsd:element name="Text" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="ThumbNail" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="Image" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attributeGroup ref="a_ImageLink"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_ImageLinks">
+		<xsd:sequence>
+			<xsd:element name="ImageLink" type="t_ImageLink" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_ImportantNotes">
+		<xsd:sequence>
+			<xsd:element name="ImportantNote" type="t_Name" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_Information">
+		<xsd:sequence>
+			<xsd:element name="Text" type="xsd:string"/>
+			<xsd:element name="DateRange" type="t_DateRange"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_Item">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Name">
+				<xsd:attribute name="Code" type="t_ItemCode" use="optional"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_ItemCity">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Name">
+				<xsd:attribute name="Code" type="t_CityCode" use="optional"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_ItemConfirmation">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Name">
+				<xsd:attribute name="Code" type="t_ConfirmationCode" use="optional"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_ItemDestination">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Name">
+				<xsd:attributeGroup ref="a_ItemDestination"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+    <xsd:complexType name="t_ItemDestinations">
+        <xsd:sequence>
+        <xsd:element name="ItemDestination" type="t_CacheItemDestination" minOccurs="1" maxOccurs="50"/>
+        </xsd:sequence>
+    </xsd:complexType>
+	<xsd:complexType name="t_ItemDetail">
+		<xsd:sequence>
+			<xsd:element name="City" type="t_City"/>
+			<xsd:element name="Item" type="t_Item"/>
+			<xsd:element name="LocationDetails" type="t_LocationDetails" minOccurs="0"/>
+			<xsd:choice minOccurs="0" maxOccurs="1">
+				<xsd:element name="ApartmentInformation" type="t_ApartmentInformation"/>
+				<xsd:element name="HotelInformation" type="t_HotelInformation"/>
+				<xsd:element name="TransferInformation" type="t_TransferInformation"/>
+				<xsd:element name="SightseeingInformation" type="t_SightseeingInformation"/>
+			</xsd:choice>
+			<xsd:element name="Copyright" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_ItemDetails">
+		<xsd:sequence>
+			<xsd:element name="ItemDetail" type="t_ItemDetail" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_ItemInformationDownloadRequest">
+		<xsd:sequence minOccurs="0">
+			<xsd:element name="IncrementalDownloads" type="t_DateRange" minOccurs="0" maxOccurs="1"/>
+		</xsd:sequence>
+		<xsd:attribute name="ItemType" type="t_ItemType" use="required"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_Items">
+		<xsd:sequence>
+			<xsd:element name="Item" type="t_Item" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_ItemReferences">
+		<xsd:sequence>
+			<xsd:element name="ItemReference" type="t_Reference" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_ItemRemarks">
+		<xsd:sequence>
+			<xsd:element name="ItemRemark" type="t_Remark" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_ItemSpecialOffer">
+		<xsd:sequence>
+			<xsd:element name="City" type="t_City" minOccurs="0"/>
+			<xsd:element name="Item" type="t_Item" minOccurs="0"/>
+			<xsd:element name="SpecialOffers" type="t_SpecialOffers" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_ItemSupplement">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Name">
+				<xsd:attributeGroup ref="a_ItemSupplement"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_ItemSupplements">
+		<xsd:sequence>
+			<xsd:element name="ItemSupplement" type="t_ItemSupplement" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_ItemSupplementBreakdown">
+		<xsd:attributeGroup ref="a_ItemSupplement" />
+	</xsd:complexType>
+	<xsd:complexType name="t_ItemSupplementsBreakdown">
+		<xsd:sequence>
+			<xsd:element name="ItemSupplement" type="t_ItemSupplementBreakdown" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>	
+	<xsd:complexType name="t_Language">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Name">
+				<xsd:attributeGroup ref="a_Language"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_LanguageDetail">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Name">
+				<xsd:attribute name="Code" type="t_LanguageSearchCode"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_LanguageDetails">
+		<xsd:sequence>
+			<xsd:element name="Language" type="t_LanguageDetail" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_LanguageISO">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Name">
+				<xsd:attribute name="Code" type="t_LanguageISOCode"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_Languages">
+		<xsd:sequence>
+			<xsd:element name="Language" type="t_Language" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_Links">
+		<xsd:sequence>
+			<xsd:element name="MapLinks" type="t_MapLinks" minOccurs="0"/>
+			<xsd:element name="ImageLinks" type="t_ImageLinks" minOccurs="0"/>
+			<xsd:element name="FlashLinks" type="t_FlashLinks" minOccurs="0"/>
+			<xsd:element name="RichMediaLinks" type="t_RichMediaLinks" minOccurs="0"/>
+			<xsd:element name="ApartmentUnits" type="t_ApartmentUnits" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_LinkDetail">
+		<xsd:sequence>
+			<xsd:element name="City" type="t_City"/>
+			<xsd:element name="Item" type="t_Item"/>
+			<xsd:element name="Links" type="t_Links"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_LinkDetails">
+		<xsd:sequence>
+			<xsd:element name="LinkDetail" type="t_LinkDetail" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_ListDetails">
+		<xsd:sequence>
+			<xsd:element name="Description" type="t_Description" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_Location">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Name">
+				<xsd:attribute name="Code" type="t_LocationCode"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_LocationDetails">
+		<xsd:sequence>
+			<xsd:element name="Location" type="t_Location" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_MapLinks">
+		<xsd:sequence>
+			<xsd:element name="MapLink" type="t_Name" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="MapPageLink" type="t_Name" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_MealBasis">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Name">
+				<xsd:attribute name="Code" type="t_MealCode"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_Meals">
+		<xsd:sequence>
+			<xsd:element name="Basis" type="t_MealBasis"/>
+			<xsd:element name="Breakfast" type="t_Breakfast" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_MealTypes">
+		<xsd:sequence>
+			<xsd:element name="MealType" type="t_MealBasis" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_MeetingPoint">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Name">
+				<xsd:attributeGroup ref="a_MeetingPoint" />
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_ModifyApartmentItem">
+		<xsd:sequence>
+			<xsd:element name="UnitCode" type="t_ApartmentCode" minOccurs="0"/>
+			<xsd:element name="NumberOfCots" type="t_NumberOfCots" minOccurs="0"/>
+			<xsd:element name="PeriodOfStay" type="t_PeriodOfStay" minOccurs="0"/>
+			<xsd:element name="ArrivalDate" type="t_Date" minOccurs="0"/>
+			<xsd:element name="PaxIds" type="t_PaxIds" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_ModifyBookingItem">
+		<xsd:sequence>
+			<xsd:element name="ItemReference" type="t_ItemReference"/>
+			<xsd:element name="ItemRemarks" type="t_ItemRemarks" minOccurs="0"/>
+			<xsd:choice maxOccurs="1" minOccurs="0">
+				<xsd:element name="ApartmentItem" type="t_ModifyApartmentItem"/>
+				<xsd:element name="HotelItem" type="t_ModifyHotelItem"/>
+				<xsd:element name="SightseeingItem" type="t_ModifySightseeingItem"/>
+				<xsd:element name="TransferItem" type="t_ModifyTransferItem"/>
+			</xsd:choice>
+		</xsd:sequence>
+		<xsd:attribute name="ItemType" type="t_ItemType" use="required"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_ModifyBookingItemRequest">
+		<xsd:sequence>
+			<xsd:element name="BookingReference" type="t_BookingReferenceInput"/>
+			<xsd:element name="BookingItems" type="t_ModifyBookingItems" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_ModifyBookingItems">
+		<xsd:sequence>
+			<xsd:element name="BookingItem" type="t_ModifyBookingItem" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_ModifyBookingRequest">
+		<xsd:sequence>
+			<xsd:element name="BookingReference" type="t_BookingReferenceInput" />
+			<xsd:element name="AgentReference" type="t_Input20" minOccurs="0" />
+			<xsd:element name="BookingDepartureDate" type="t_Date" minOccurs="0" />
+			<xsd:element name="PassengerEmail" type="t_EMailAddress" minOccurs="0" />			
+			<xsd:element name="PaxNames" type="t_PaxNames" minOccurs="0" />
+			<xsd:element name="CreditCard" type="t_CreditCardDetails" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_ModifyHotelItem">
+		<xsd:sequence>
+			<xsd:element name="AlternativesAllowed" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="PeriodOfStay" type="t_PeriodOfStay" minOccurs="0"/>
+			<xsd:element name="HotelRooms" type="t_HotelRooms" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_ModifySightseeingItem">
+		<xsd:sequence>
+			<xsd:element name="TourDate" type="t_Date" minOccurs="0"/>
+			<xsd:element name="TourLanguage" type="t_Language" minOccurs="0"/>
+			<xsd:element name="PaxIds" type="t_PaxIds" minOccurs="0"/>
+			<xsd:element name="TourDeparture" type="t_Departure" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_ModifyTransferItem">
+		<xsd:sequence>
+			<xsd:element name="PickUpDetails" type="t_PickUpDetails" minOccurs="0"/>
+			<xsd:element name="DropOffDetails" type="t_DropOffDetails" minOccurs="0"/>
+			<xsd:element name="TransferDate" type="t_Date" minOccurs="0"/>
+			<xsd:element name="TransferLanguage" type="t_Language" minOccurs="0"/>
+			<xsd:element name="TransferVehicle" type="t_TransferVehicle" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+    <xsd:complexType name="t_Night">
+        <xsd:sequence>
+            <xsd:element name="Rates" type="t_CacheRates" minOccurs="0"/>
+            <xsd:element name="Availability" type="t_CacheAvailability" minOccurs="0"/>
+        </xsd:sequence>
+        <xsd:attribute name="Date" type="xsd:date" use="required"/>
+    </xsd:complexType>
+    <xsd:complexType name="t_Nights">
+        <xsd:sequence>
+            <xsd:element name="Night" type="t_Night" minOccurs="0"  maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+	<xsd:complexType name="t_Occupancy">
+		<xsd:sequence>
+			<xsd:element name="NumberOfAdults" type="t_NumberOfAdults"/>
+			<xsd:element name="Children" type="t_Children" minOccurs="0"/>
+			<xsd:element name="NumberOfCots" type="t_NumberOfCots" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_Offer">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Name">
+				<xsd:attribute name="Code" type="t_OfferCode" use="optional"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_Office">
+		<xsd:sequence>
+			<xsd:element name="OfficeLocation" type="xsd:string" minOccurs="1" maxOccurs="1" />
+			<xsd:element name="SupplierName" type="xsd:string" minOccurs="0" maxOccurs="1" />
+			<xsd:element name="AssistanceLanguages" type="t_AssistanceLanguages" minOccurs="0" maxOccurs="1" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_Offices">
+		<xsd:sequence>
+			<xsd:element name="Office" type="t_Office" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_OutOfHoursSupplements">
+		<xsd:sequence>
+			<xsd:element name="OutOfHoursSupplement" type="t_OutOfHoursSupplement" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_OutOfHoursSupplement">
+		<xsd:sequence>
+			<xsd:element name="FromTime" type="xsd:string"/>
+			<xsd:element name="ToTime" type="xsd:string"/>
+			<xsd:element name="Supplement" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_OverrideText">
+		<xsd:sequence>
+			<xsd:element name="TourSummary" type="xsd:string" minOccurs="0" />
+			<xsd:element name="TheTour" type="xsd:string" minOccurs="0" />
+			<xsd:element name="Includes" type="xsd:string" minOccurs="0" />			
+			<xsd:element name="PleaseNote" type="xsd:string" minOccurs="0" />
+			<xsd:element name="DeparturePoints" type="xsd:string" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_PassengerNameChange">
+		<xsd:attributeGroup ref="a_PassengerNameChange" />
+	</xsd:complexType>
+    
+	<xsd:complexType name="t_PaxIds">
+		<xsd:sequence>
+			<xsd:element name="PaxId" type="t_PaxId" minOccurs="1" maxOccurs="9"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_PaxName">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Input50Mandatory">
+				<xsd:attributeGroup ref="a_PaxName"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_PaxNames">
+		<xsd:sequence>
+			<xsd:element name="PaxName" type="t_PaxName" minOccurs="1" maxOccurs="99"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_PaxTypeBreakdown">
+		<xsd:attributeGroup ref="a_PaxType" />  
+	</xsd:complexType>	
+	<xsd:complexType name="t_PaxTypesBreakdown">
+		<xsd:sequence>
+			<xsd:element name="PaxType" type="t_PaxTypeBreakdown" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>	
+	<xsd:complexType name="t_PaymentStatus">
+		<xsd:sequence>
+			<xsd:element name="BalanceAmount" type="t_PriceDetails" />
+			<xsd:element name="LastTransactionAmount" type="t_PriceDetails" minOccurs="0"/>
+			<xsd:element name="MaskedCardNumber" type="xsd:string" />
+			<xsd:element name="CardType" type="t_CreditCardType" />
+			<xsd:element name="LastTransactionTime" type="xsd:dateTime" minOccurs="0"/>
+			<xsd:element name="Success" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="AcquirerId" type="t_AcquirerId" minOccurs="0"/>
+			<xsd:element name="ErrorCode" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_PeriodOfStay">
+		<xsd:sequence>
+			<xsd:element name="CheckInDate" type="t_Date"/>
+			<xsd:choice>
+				<xsd:element name="CheckOutDate" type="t_Date"/>
+				<xsd:element name="Duration" type="t_Duration"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_PickUpAccommodation">
+		<xsd:sequence>
+			<xsd:choice minOccurs="0" maxOccurs="1">
+				<xsd:element name="PickUpFrom" type="t_Where"/>
+				<xsd:element name="PickUpAddress" type="t_AlternateAddress"/>
+			</xsd:choice>
+			<xsd:element name="PickUpTime" type="t_Time" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_PickUpAirport">
+		<xsd:sequence>
+			<xsd:element name="Airport" type="t_Airport" minOccurs="0"/>
+			<xsd:element name="ArrivingFrom" type="t_Where" minOccurs="0"/>
+			<xsd:element name="FlightNumber" type="t_FlightNumber" minOccurs="0"/>
+			<xsd:element name="EstimatedArrival" type="t_Time" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_PickUpDetails">
+		<xsd:sequence>
+			<xsd:element name="PickUp" type="t_TransferPointLocation" minOccurs="0"/>
+			<xsd:choice minOccurs="0" maxOccurs="1">
+				<xsd:element name="Area" type="t_Area"/>
+				<xsd:element name="City" type="t_City"/>
+				<xsd:element name="Airport" type="t_Airport"/>
+			</xsd:choice>
+			<xsd:choice minOccurs="0" maxOccurs="1">
+				<xsd:element name="PickUpAirport" type="t_PickUpAirport"/>
+				<xsd:element name="PickUpAccommodation" type="t_PickUpAccommodation"/>
+				<xsd:element name="PickUpPort" type="t_PickUpPort"/>
+				<xsd:element name="PickUpStation" type="t_PickUpStation"/>
+				<xsd:element name="PickUpOther" type="t_PickUpOther"/>
+			</xsd:choice>
+			<xsd:element name="PickUpPoints" type="t_PickUpPoints" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="PickUpPointAllowed" type="xsd:boolean" use="optional"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_PickUpOther">
+		<xsd:sequence>
+			<xsd:choice minOccurs="0" maxOccurs="1">
+				<xsd:element name="PickUpFrom" type="t_Where"/>
+				<xsd:element name="PickUpAddress" type="t_AlternateAddress"/>
+			</xsd:choice>
+			<xsd:element name="PickUpTime" type="t_Time" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_PickUpPoints">
+		<xsd:sequence>
+			<xsd:element name="PickUpPoint" type="t_MeetingPoint" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_PickUpPort">
+		<xsd:sequence>
+			<xsd:element name="City" type="t_City" minOccurs="0"/>
+			<xsd:element name="ArrivingFrom" type="t_Input50" minOccurs="0"/>
+			<xsd:element name="ShipName" type="t_Input50" minOccurs="0"/>
+			<xsd:element name="ShippingCompany" type="t_Input50" minOccurs="0"/>
+			<xsd:element name="EstimatedArrival" type="t_Time" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_PickUpStation">
+		<xsd:sequence>
+			<xsd:element name="Station" type="t_Station" minOccurs="0"/>
+			<xsd:element name="ArrivingFrom" type="t_Where" minOccurs="0"/>
+			<xsd:element name="TrainName" type="t_Input50" minOccurs="0"/>
+			<xsd:element name="EstimatedArrival" type="t_Time" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_PleaseNotes">
+		<xsd:sequence>
+			<xsd:element name="PleaseNote" type="t_NameWithCode" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_Port">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Name">
+				<xsd:attribute name="Code" type="t_PortCode" use="optional"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_PossibleLeadTimeRestrictions">
+		<xsd:sequence>
+			<xsd:element name="Condition" type="t_Condition"/>
+			<xsd:element name="EffectiveDates" type="t_DateRange" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+    <xsd:complexType name="t_PriceAndAvailabilityCacheRequest">
+        <xsd:sequence>
+            <xsd:element name="CurrencyCodes" type="t_CurrencyCodes"  minOccurs="0"/>
+            <xsd:element name="PriceType" type="t_PriceType"/>
+            <xsd:element name="ItemDestinations" type="t_ItemDestinations" minOccurs="1"/>
+            <xsd:element name="ImmediateConfirmationOnly" type="t_Empty" minOccurs="0"/>
+            <xsd:element name="IncludeSpecialOffers" type="t_Empty" minOccurs="0"/>
+            <xsd:element name="DateRange" type="t_DateRange" minOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="t_PriceAndAvailabilityCacheResponse">
+        <xsd:sequence>
+           <xsd:element name="Hotels" type="t_Hotels" minOccurs="0" maxOccurs="unbounded"/>
+           <xsd:element name="Errors" type="t_Errors" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="t_PriceCacheRequest">
+        <xsd:sequence>
+            <xsd:element name="CurrencyCodes" type="t_CurrencyCodes"  minOccurs="0"/>
+            <xsd:element name="PriceType" type="t_PriceType"/>
+            <xsd:element name="ItemDestinations" type="t_ItemDestinations" minOccurs="1"/>
+            <xsd:element name="ImmediateConfirmationOnly" type="t_Empty" minOccurs="0"/>
+            <xsd:element name="IncludeSpecialOffers" type="t_Empty" minOccurs="0"/>
+            <xsd:element name="DateRange" type="t_DateRange" minOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="t_PriceCacheResponse">
+        <xsd:sequence>
+            <xsd:element name="Hotels" type="t_Hotels" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="Errors" type="t_Errors" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+	<xsd:complexType name="t_PriceDetails">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Price">
+				<xsd:attributeGroup ref="a_PriceDetails"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_PriceRange">
+		<xsd:sequence>
+			<xsd:element name="DateRange" type="t_DateRange"/>
+			<xsd:element name="Price" type="t_BookingPrice"/>
+		</xsd:sequence>
+        <xsd:attribute name="DailyAverage" type="xsd:boolean" use="optional"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_PriceRanges">
+		<xsd:sequence>
+			<xsd:element name="PriceRange" type="t_PriceRange" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+    <xsd:complexType name="t_Rate">
+        <xsd:sequence>
+            <xsd:element name="Room" type="t_CacheRoomPrice" minOccurs="0"  maxOccurs="unbounded"/>
+        </xsd:sequence>
+        <xsd:attributeGroup ref="a_Rate" />
+    </xsd:complexType>
+	<xsd:complexType name="t_RateIncludes">
+		<xsd:sequence>
+			<xsd:element name="RateInclude" type="t_NameWithCode" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_Remark">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Name">
+				<xsd:attributeGroup ref="a_Remark"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_Remarks">
+		<xsd:sequence>
+			<xsd:element name="Remark" type="t_Remark" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_Report">
+		<xsd:simpleContent>
+			<xsd:extension base="t_ReportText">
+				<xsd:attribute name="Type" type="t_ReportType" use="optional"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_Reports">
+		<xsd:sequence>
+			<xsd:element name="Report" type="t_Report" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_Request">
+		<xsd:sequence>
+			<xsd:element name="Source" type="t_Source"/>
+			<xsd:element name="RequestDetails" type="t_RequestDetails"/>
+		</xsd:sequence>
+		<xsd:attributeGroup ref="a_Request"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_RequestDetails">
+		<xsd:choice minOccurs="1" maxOccurs="unbounded">
+			<xsd:element name="AddBookingItemRequest" type="t_AddBookingItemRequest"/>
+			<xsd:element name="AddBookingRequest" type="t_AddBookingRequest"/>
+			<xsd:element name="ApartmentPriceBreakdownRequest" type="t_ApartmentPriceBreakdownRequest" />			
+            <xsd:element name="AvailabilityCacheRequest" type="t_AvailabilityCacheRequest" />
+			<xsd:element name="BookingItemPriceBreakdownRequest" type="t_SearchBookingItemRequest"/>
+			<xsd:element name="CancelBookingItemRequest" type="t_CancelBookingItemRequest"/>
+			<xsd:element name="CancelBookingRequest" type="t_CancelBookingRequest"/>
+			<xsd:element name="HotelPriceBreakdownRequest" type="t_HotelPriceBreakdownRequest"/>
+			<xsd:element name="ItemInformationDownloadRequest" type="t_ItemInformationDownloadRequest" />
+			<xsd:element name="ModifyBookingItemRequest" type="t_ModifyBookingItemRequest"/>
+			<xsd:element name="ModifyBookingRequest" type="t_ModifyBookingRequest"/>
+            <xsd:element name="PriceAndAvailabilityCacheRequest" type="t_PriceAndAvailabilityCacheRequest" />
+            <xsd:element name="PriceCacheRequest" type="t_PriceCacheRequest" />
+			<xsd:element name="SearchAirportRequest" type="t_SearchAirportRequest"/>
+			<xsd:element name="SearchAOTNumberRequest" type="t_SearchAOTNumberRequest"/>
+			<xsd:element name="SearchApartmentPriceRequest" type="t_SearchApartmentPriceRequest"/>
+			<xsd:element name="SearchAreaRequest" type="t_SearchAreaRequest"/>
+			<xsd:element name="SearchBookingItemRequest" type="t_SearchBookingItemRequest"/>
+			<xsd:element name="SearchBookingRequest" type="t_SearchBookingRequest"/>
+			<xsd:element name="SearchBreakfastTypeRequest" type="t_SearchBreakfastTypeRequest"/>
+			<xsd:element name="SearchChargeConditionsRequest" type="t_SearchChargeConditionsRequest"/>
+			<xsd:element name="SearchCitiesInAreaRequest" type="t_SearchCitiesInAreaRequest"/>
+			<xsd:element name="SearchCityRequest" type="t_SearchCityRequest"/>
+			<xsd:element name="SearchCountryRequest" type="t_SearchCountryRequest"/>
+			<xsd:element name="SearchCurrencyRequest" type="t_SearchCurrencyRequest"/>
+			<xsd:element name="SearchFacilityRequest" type="t_SearchFacilityRequest"/>
+			<xsd:element name="SearchHotelAvailabilityRequest" type="t_SearchHotelAvailabilityRequest"/>
+			<xsd:element name="SearchHotelGroupRequest" type="t_SearchHotelGroupRequest"/>
+			<xsd:element name="SearchHotelPriceRequest" type="t_SearchHotelPriceRequest"/>
+			<xsd:element name="SearchHotelRoomsPriceRequest" type="t_SearchHotelRoomsPriceRequest"/>
+			<xsd:element name="SearchItemInformationRequest" type="t_SearchItemInformationRequest"/>
+			<xsd:element name="SearchItemRequest" type="t_SearchItemRequest"/>
+			<xsd:element name="SearchLinkRequest" type="t_SearchLinkRequest"/>
+			<xsd:element name="SearchLocationRequest" type="t_SearchLocationRequest"/>
+			<xsd:element name="SearchMealTypeRequest" type="t_SearchMealTypeRequest"/>
+			<xsd:element name="SearchRemarkRequest" type="t_SearchRemarkRequest"/>
+			<xsd:element name="SearchRoomTypeRequest" type="t_SearchRoomTypeRequest"/>
+			<xsd:element name="SearchSightseeingPriceRequest" type="t_SearchSightseeingPriceRequest"/>
+			<xsd:element name="SearchSpecialEventRequest" type="t_SearchSpecialEventRequest"/>
+			<xsd:element name="SearchSpecialOfferRequest" type="t_SearchSpecialOfferRequest"/>
+			<xsd:element name="SearchStationRequest" type="t_SearchStationRequest"/>
+			<xsd:element name="SearchTransferListRequest" type="t_SearchTransferListRequest"/>
+			<xsd:element name="SearchTransferPriceRequest" type="t_SearchTransferPriceRequest"/>
+			<xsd:element name="SearchRecommendedItemRequest" type="t_SearchRecommendedItemRequest"/>
+			<xsd:element name="SearchSightseeingTypeRequest" type="t_SearchSightseeingTypeRequest"/>
+			<xsd:element name="SearchSightseeingCategoryRequest" type="t_SearchSightseeingCategoryRequest"/>
+			<xsd:element name="SightseeingPriceBreakdownRequest" type="t_SightseeingPriceBreakdownRequest" />
+        </xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="t_RequestorID">
+		<xsd:sequence>
+			<xsd:element name="CompanyName" type="t_Name" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attributeGroup ref="a_Authentication"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_RequestorPreferences">
+		<xsd:sequence>
+			<xsd:element name="RequestMode" type="t_RequestMode"/>
+			<xsd:element name="ResponseURL" type="t_URL" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attributeGroup ref="a_RequestorPreferences"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_Response">
+		<xsd:sequence>
+			<xsd:choice minOccurs="0" maxOccurs="1">
+				<xsd:element name="ResponseDetails" type="t_ResponseDetails"/>
+				<xsd:element name="Errors" type="t_Errors"/>
+			</xsd:choice>
+		</xsd:sequence>
+		<xsd:attributeGroup ref="a_Response"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_ResponseDetails">
+		<xsd:choice minOccurs="0" maxOccurs="unbounded">
+			<xsd:element name="ApartmentPriceBreakdownResponse" type="t_ApartmentPriceBreakdownResponse" />		
+            <xsd:element name="AvailabilityCacheResponse" type="t_AvailabilityCacheResponse"/>
+			<xsd:element name="BookingResponse" type="t_SearchBookingItemResponse"/>
+            <xsd:element name="BookingItemPriceBreakdownResponse" type="t_BookingItemPriceBreakdownResponse"/>
+			<xsd:element name="Errors" type="t_Errors"/>
+			<xsd:element name="HotelPriceBreakdownResponse" type="t_HotelPriceBreakdownResponse"/>
+            <xsd:element name="PriceAndAvailabilityCacheResponse" type="t_PriceAndAvailabilityCacheResponse"/>
+            <xsd:element name="PriceCacheResponse" type="t_PriceCacheResponse"/>
+			<xsd:element name="SearchAirportResponse" type="t_SearchAirportResponse"/>
+			<xsd:element name="SearchAOTNumberResponse" type="t_SearchAOTNumberResponse"/>
+			<xsd:element name="SearchApartmentPriceResponse" type="t_SearchApartmentPriceResponse"/>
+			<xsd:element name="SearchAreaResponse" type="t_SearchAreaResponse"/>
+			<xsd:element name="SearchBookingResponse" type="t_SearchBookingResponse"/>
+			<xsd:element name="SearchBookingItemResponse" type="t_SearchBookingItemResponse"/>
+			<xsd:element name="SearchBreakfastTypeResponse" type="t_SearchBreakfastTypeResponse"/>
+			<xsd:element name="SearchChargeConditionsResponse" type="t_SearchChargeConditionsResponse"/>
+			<xsd:element name="SearchCitiesInAreaResponse" type="t_SearchCitiesInAreaResponse"/>
+			<xsd:element name="SearchCityResponse" type="t_SearchCityResponse"/>
+			<xsd:element name="SearchCountryResponse" type="t_SearchCountryResponse"/>
+			<xsd:element name="SearchCurrencyResponse" type="t_SearchCurrencyResponse"/>
+			<xsd:element name="SearchHotelAvailabilityResponse" type="t_SearchHotelAvailabilityResponse"/>
+			<xsd:element name="SearchHotelGroupResponse" type="t_SearchHotelGroupResponse"/>
+			<xsd:element name="SearchHotelPriceResponse" type="t_SearchHotelPriceResponse"/>
+			<xsd:element name="SearchHotelRoomsPriceResponse" type="t_SearchHotelRoomsPriceResponse"/>
+			<xsd:element name="SearchFacilityResponse" type="t_SearchFacilityResponse"/>
+			<xsd:element name="SearchItemInformationResponse" type="t_SearchItemInformationResponse"/>
+			<xsd:element name="SearchItemResponse" type="t_SearchItemResponse"/>
+			<xsd:element name="SearchLinkResponse" type="t_SearchLinkResponse"/>
+			<xsd:element name="SearchLocationResponse" type="t_SearchLocationResponse"/>
+			<xsd:element name="SearchMealTypeResponse" type="t_SearchMealTypeResponse"/>
+			<xsd:element name="SearchRemarkResponse" type="t_SearchRemarkResponse"/>
+			<xsd:element name="SearchRoomTypeResponse" type="t_SearchRoomTypeResponse"/>
+			<xsd:element name="SearchSightseeingPriceResponse" type="t_SearchSightseeingPriceResponse"/>
+			<xsd:element name="SearchSpecialEventResponse" type="t_SearchSpecialEventResponse"/>
+			<xsd:element name="SearchSpecialOfferResponse" type="t_SearchSpecialOfferResponse"/>
+			<xsd:element name="SearchStationResponse" type="t_SearchStationResponse"/>
+			<xsd:element name="SearchTransferListResponse" type="t_SearchTransferListResponse"/>
+			<xsd:element name="SearchTransferPriceResponse" type="t_SearchTransferPriceResponse"/>
+			<xsd:element name="SearchSightseeingTypeResponse" type="t_SearchSightseeingTypeResponse"/>
+			<xsd:element name="SearchSightseeingCategoryResponse" type="t_SearchSightseeingCategoryResponse"/>
+			<xsd:element name="SightseeingPriceBreakdownResponse" type="t_SightseeingPriceBreakdownResponse" />					
+			<xsd:element name="SearchRecommendedItemResponse" type="t_SearchRecommendedItemResponse" />
+        </xsd:choice>
+		<xsd:attributeGroup ref="a_ResponseDetails"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_ResponseHotelRoom">
+        <xsd:attributeGroup ref="a_ResponseHotelRoom"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_ResponseHotelRooms">
+		<xsd:sequence>
+			<xsd:element name="HotelRoom" type="t_ResponseHotelRoom" maxOccurs="9"/>
+		</xsd:sequence>
+	</xsd:complexType>
+    <xsd:complexType name="t_RichMediaLinks">
+		<xsd:sequence>
+			<xsd:element name="RichMediaLink" type="t_Name" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_Room">
+		<xsd:sequence>
+			<xsd:element name="ExtraBeds" type="t_ExtraBeds" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attributeGroup ref="a_Room"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_RoomAvailability">
+		<xsd:sequence>
+			<xsd:element name="Availability" type="t_Availability" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_RoomCategories">
+		<xsd:sequence>
+			<xsd:element name="RoomCategory" type="t_RoomCategory" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:annotation>
+		<xsd:documentation>
+			DeDupRoom is used for internal processing only, it should not be returned although it would not 
+			really matter.
+		</xsd:documentation>
+	</xsd:annotation>
+    <xsd:complexType name="t_RoomCategory">
+        <xsd:sequence>
+        	<xsd:element name="DeDupRoom" type="t_DeDupRoom" minOccurs="0" />
+            <xsd:element name="Description" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="RoomDescription" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="ItemPrice" type="t_PriceDetails" minOccurs="0"/>
+            <xsd:element name="Offer" type="t_Offer" minOccurs="0" />
+            <xsd:element name="Confirmation" type="t_ItemConfirmation" minOccurs="0"/>
+            <xsd:element name="SharingBedding" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="Meals" type="t_Meals" minOccurs="0"/>             
+            <xsd:element name="HotelRoomPrices" type="t_HotelRoomsPriceBreakdown" minOccurs="0"/>
+     	    <xsd:element name="PaymentDeadline" type="t_Date" minOccurs="0"/>
+            <xsd:element name="EssentialInformation" type="t_EssentialInformation" minOccurs="0"/>
+            <xsd:element name="ChargeConditions" type="t_ChargeConditions" minOccurs="0"/>           
+        </xsd:sequence>
+        <xsd:attributeGroup ref="a_RoomCategory"/>
+    </xsd:complexType>
+    <xsd:complexType name="t_RoomPrice">
+        <xsd:simpleContent>
+			<xsd:extension base="t_Price">
+				<xsd:attributeGroup ref="a_PriceDetails"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="t_CacheOffers">
+    	<xsd:sequence>
+            <xsd:element name="Offer" type="t_CacheOffer" minOccurs="1" maxOccurs="unbounded"/>             
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="t_CacheOffer">
+    	<xsd:sequence>
+    		<xsd:element name="Prices" type="t_RoomPrices" minOccurs="0"/>            
+        </xsd:sequence>
+        <xsd:attributeGroup ref="a_CacheOffer"/>
+    </xsd:complexType>
+    
+    <xsd:complexType name="t_RoomPrices">
+        <xsd:sequence>
+            <xsd:element name="Price" type="t_RoomPrice" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+	<xsd:complexType name="t_Rooms">
+		<xsd:sequence>
+			<xsd:element name="Room" type="t_Room" maxOccurs="4"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_RoomType">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Name">
+				<xsd:attribute name="Code" type="t_RoomCode"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_RoomTypes">
+		<xsd:sequence>
+			<xsd:element name="RoomType" type="t_RoomType" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="RoomCount" type="xsd:integer" use="optional"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchAirportRequest">
+		<xsd:sequence>
+			<xsd:element name="ItemDestination" type="t_ItemDestination"/>
+			<xsd:element name="AirportName" type="t_SearchName" minOccurs="0"/>
+			<xsd:element name="AirportCode" type="t_AirportCode" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchAirportResponse">
+		<xsd:sequence>
+			<xsd:choice maxOccurs="1">
+				<xsd:element name="AirportDetails" type="t_AirportDetails"/>
+				<xsd:element name="Errors" type="t_Errors"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+		<xsd:complexType name="t_SearchRecommendedItemResponse"> 
+		<xsd:sequence> 
+			<xsd:choice> 
+				<xsd:element name="RecommendedItemDetails" type="t_RecommendedItemDetails" minOccurs="0" maxOccurs="unbounded"/> 
+				<xsd:element name="Errors" type="t_Errors"/> 
+			</xsd:choice> 
+		</xsd:sequence> 
+	</xsd:complexType>
+
+
+	<xsd:complexType name="t_RecommendedItemDetails">
+		<xsd:sequence>
+			<xsd:element name="City" type="t_City" />
+			<xsd:element name="Item" type="t_Item" />
+			<xsd:element name="Nationality" type="t_NationalityCode"/>
+			<xsd:element name="TravelDates" type="t_DateRange"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="t_SearchAOTNumberRequest">
+		<xsd:sequence>
+			<xsd:element name="AssistanceLanguage" type="t_LanguageSearchCode" minOccurs="0"/>
+			<xsd:element name="Destination" type="t_CountryCode" minOccurs="0"/>
+			<xsd:element name="Nationality" type="t_NationalityCode"/>
+			<xsd:element name="ServiceType" type="t_ItemType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchAOTNumberResponse">
+		<xsd:sequence>
+			<xsd:choice maxOccurs="1">
+				<xsd:element name="ContactDetails" type="t_ContactDetails"/>
+				<xsd:element name="Errors" type="t_Errors"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchApartmentInformation">
+		<xsd:sequence>
+			<xsd:element name="StarRating" type="t_StarRating" minOccurs="0"/>
+			<xsd:element name="FacilityCodes" type="t_FacilityCodes" minOccurs="0"/>
+			<xsd:element name="PropertyTypeCode" type="t_PropertyTypeCode" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchApartmentPriceRequest">
+		<xsd:complexContent>
+			<xsd:extension base="t_SearchItemPriceRequest">
+				<xsd:sequence>
+					<xsd:element name="PeriodOfStay" type="t_PeriodOfStay"/>
+					<xsd:element name="Occupancy" type="t_Occupancy"/>
+					<xsd:element name="StarRating" type="t_StarRating" minOccurs="0"/>
+					<xsd:element name="LocationCode" type="t_LocationCode" minOccurs="0"/>
+					<xsd:element name="PropertyTypeCode" type="t_PropertyTypeCode" minOccurs="0"/>
+					<xsd:element name="FacilityCodes" type="t_FacilityCodes" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchApartmentPriceResponse">
+		<xsd:sequence>
+			<xsd:choice maxOccurs="1">
+				<xsd:element name="ApartmentDetails" type="t_ApartmentDetails"/>
+				<xsd:element name="Errors" type="t_Errors"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchAreaRequest">
+		<xsd:sequence>
+			<xsd:element name="AreaName" type="t_SearchName" minOccurs="0"/>
+			<xsd:element name="AreaCode" type="t_AreaCode" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchAreaResponse">
+		<xsd:sequence>
+			<xsd:choice maxOccurs="1">
+				<xsd:element name="AreaDetails" type="t_AreaDetails"/>
+				<xsd:element name="Errors" type="t_Errors"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchBookingItemRequest">
+		<xsd:sequence>
+			<xsd:element name="BookingReference" type="t_BookingReference" />
+			<xsd:element name="ItemStatusCode" type="t_StatusCode" minOccurs="0" />
+			<xsd:element name="ItemReference" type="t_ItemReference" minOccurs="0" />
+			<xsd:element name="ShowPaymentStatus" type="xsd:boolean" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchBookingRequest">
+		<xsd:sequence>
+			<xsd:element name="BookingReference" type="t_BookingReference" minOccurs="0" />
+			<xsd:element name="BookingDateRange" type="t_DateRange" minOccurs="0" />
+			<xsd:element name="BookingStatusCode" type="t_StatusCode" minOccurs="0" />
+			<xsd:element name="BookingName" type="t_SearchName" minOccurs="0" />
+			<xsd:element name="EchoSearchCriteria" type="xsd:boolean" minOccurs="0" />
+			<xsd:element name="ShowPaymentStatus" type="xsd:boolean" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchBookingItemResponse">
+		<xsd:sequence>
+			<xsd:choice maxOccurs="1">
+				<xsd:sequence>
+					<xsd:element name="BookingReferences" type="t_BookingReferences" minOccurs="0"/>
+					<xsd:element name="BookingCreationDate" type="t_Date" minOccurs="0"/>
+					<xsd:element name="BookingDepartureDate" type="t_Date" minOccurs="0"/>
+					<xsd:element name="BookingName" type="t_Name" minOccurs="0"/>
+					<xsd:element name="PassengerEmail" type="t_EMailAddress" minOccurs="0" />
+					<xsd:element name="BookingPrice" type="t_BookingPrice" minOccurs="0"/>
+					<xsd:element name="BookingFee" type="t_PriceDetails" minOccurs="0"/>
+					<xsd:element name="BookingStatus" type="t_Status" minOccurs="0"/>
+					<xsd:element name="BookingRemarks" type="t_BookingRemarks" minOccurs="0"/>
+					<xsd:element name="BookingPaymentStatus" type="t_PaymentStatus" minOccurs="0" />
+					<xsd:element name="PaxNames" type="t_PaxNames" minOccurs="0"/>
+					<xsd:element name="BookingItems" type="t_BookingItems" minOccurs="0"/>
+				</xsd:sequence>
+				<xsd:element name="Errors" type="t_Errors"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchBookingResponse">
+		<xsd:sequence>
+			<xsd:choice maxOccurs="1">
+				<xsd:sequence>
+					<xsd:element name="SearchBookingCriteria" type="t_SearchBookingRequest" minOccurs="0"/>
+					<xsd:element name="Bookings" type="t_Bookings" minOccurs="0"/>
+				</xsd:sequence>
+				<xsd:element name="Errors" type="t_Errors"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchBreakfastTypeRequest">
+		<xsd:sequence>
+			<xsd:element name="BreakfastTypeName" type="t_SearchName" minOccurs="0"/>
+			<xsd:element name="BreakfastTypeCode" type="t_BreakfastTypeCode" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchBreakfastTypeResponse">
+		<xsd:sequence>
+			<xsd:choice maxOccurs="1">
+				<xsd:element name="BreakfastTypeDetails" type="t_BreakfastTypeDetails"/>
+				<xsd:element name="Errors" type="t_Errors"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchChargeConditionsRequest">
+		<xsd:sequence>
+            <xsd:element name="DateFormatResponse" type="t_Empty" minOccurs="0"/>
+            <xsd:choice maxOccurs="1">
+				<xsd:element name="ChargeConditionsApartment" type="t_ChargeConditionsApartment"/>
+				<xsd:element name="ChargeConditionsBookingItem" type="t_ChargeConditionsBookingItem"/>
+				<xsd:element name="ChargeConditionsHotel" type="t_ChargeConditionsHotel"/>
+				<xsd:element name="ChargeConditionsSightseeing" type="t_ChargeConditionsSightseeing"/>
+				<xsd:element name="ChargeConditionsTransfer" type="t_ChargeConditionsTransfer"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchChargeConditionsResponse">
+		<xsd:sequence>
+			<xsd:choice maxOccurs="1">
+				<xsd:element name="ChargeConditions" type="t_ChargeConditions"/>
+				<xsd:element name="Errors" type="t_Errors"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchCitiesInAreaRequest">
+		<xsd:sequence>
+			<xsd:element name="CityName" type="t_SearchName" minOccurs="0"/>
+			<xsd:element name="CityCode" type="t_CityCode" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="AreaCode" type="t_AreaCode" use="required"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchCitiesInAreaResponse">
+		<xsd:sequence>
+			<xsd:choice maxOccurs="1">
+				<xsd:element name="CityDetails" type="t_CityDetails"/>
+				<xsd:element name="Errors" type="t_Errors"/>
+			</xsd:choice>
+		</xsd:sequence>
+		<xsd:attribute name="AreaCode" type="t_AreaCode"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchCityRequest">
+		<xsd:sequence>
+			<xsd:element name="CityName" type="t_SearchName" minOccurs="0"/>
+			<xsd:element name="CityCode" type="t_CityCode" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attributeGroup ref="a_SearchCity"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchCityResponse">
+		<xsd:sequence>
+			<xsd:choice maxOccurs="1">
+				<xsd:element name="CityDetails" type="t_CityDetails"/>
+				<xsd:element name="Errors" type="t_Errors"/>
+			</xsd:choice>
+		</xsd:sequence>
+		<xsd:attributeGroup ref="a_SearchCity"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchCountryRequest">
+		<xsd:sequence>
+			<xsd:element name="CountryName" type="t_SearchName" minOccurs="0"/>
+			<xsd:element name="CountryCode" type="t_CountryCode" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="ISO" type="xsd:boolean" use="optional"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchCountryResponse">
+		<xsd:sequence>
+			<xsd:choice maxOccurs="1">
+				<xsd:element name="CountryDetails" type="t_CountryDetails"/>
+				<xsd:element name="Errors" type="t_Errors"/>
+			</xsd:choice>
+		</xsd:sequence>
+		<xsd:attribute name="ISO" type="xsd:boolean" use="optional"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchCurrencyRequest">
+		<xsd:sequence>
+			<xsd:element name="CurrencyName" type="t_SearchName" minOccurs="0"/>
+			<xsd:element name="CurrencyCode" type="t_CurrencyCode" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchCurrencyResponse">
+		<xsd:sequence>
+			<xsd:choice maxOccurs="1">
+				<xsd:element name="CurrencyDetails" type="t_CurrencyDetails"/>
+				<xsd:element name="Errors" type="t_Errors"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchFacilityRequest">
+		<xsd:sequence>
+			<xsd:element name="FacilityName" type="t_SearchName" minOccurs="0"/>
+			<xsd:element name="FacilityCode" type="t_FacilityCode" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="FacilityType" type="t_FacilityType" use="optional"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchFacilityResponse">
+		<xsd:sequence>
+			<xsd:choice maxOccurs="1">
+				<xsd:element name="FacilityDetails" type="t_FacilityDetails"/>
+				<xsd:element name="Errors" type="t_Errors"/>
+			</xsd:choice>
+		</xsd:sequence>
+		<xsd:attribute name="FacilityType" type="t_FacilityType"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchHotelInformation">
+		<xsd:sequence>
+			<xsd:element name="StarRating" type="t_StarRating" minOccurs="0"/>
+			<xsd:element name="FacilityCodes" type="t_FacilityCodes" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchHotelAvailabilityRequest">
+		<xsd:complexContent>
+			<xsd:extension base="t_SearchItemPriceRequest">
+				<xsd:sequence>
+					<xsd:element name="PeriodOfStay" type="t_PeriodOfStay"/>
+					<xsd:element name="Rooms" type="t_AvailableRooms"/>
+					<xsd:element name="StarRating" type="t_StarRating" minOccurs="0"/>
+					<xsd:element name="LocationCode" type="t_LocationCode" minOccurs="0"/>
+					<xsd:element name="FacilityCodes" type="t_FacilityCodes" minOccurs="0"/>
+					<xsd:element name="OrderBy" type="t_OrderBy" minOccurs="0"/>
+					<xsd:element name="NumberOfReturnedItems" type="t_NumberOfReturnedItems" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchHotelAvailabilityResponse">
+		<xsd:sequence>
+			<xsd:choice maxOccurs="1">
+				<xsd:element name="HotelDetails" type="t_HotelDetails"/>
+				<xsd:element name="Errors" type="t_Errors"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchHotelGroupRequest">
+		<xsd:sequence>
+			<xsd:element name="CountryCode" type="t_CountryISOCode" minOccurs="0"/>
+			<xsd:element name="ItemDestination" type="t_ItemDestination" minOccurs="0"/>
+			<xsd:element name="ItemName" type="t_SearchName" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchHotelGroupResponse">
+		<xsd:sequence>
+			<xsd:choice>
+				<xsd:element name="GroupHotelDetails" type="t_GroupHotelDetails"/>
+				<xsd:element name="Errors" type="t_Errors"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchHotelPriceRequest">
+		<xsd:complexContent>
+			<xsd:extension base="t_SearchItemPriceRequest">
+				<xsd:sequence>
+					<xsd:element name="PeriodOfStay" type="t_PeriodOfStay"/>
+					<xsd:choice minOccurs="0">
+						<xsd:element name="IncludeRecommended" type="t_Empty" minOccurs="0"/>
+						<xsd:element name="RecommendedOnly" type="t_Empty" minOccurs="0"/>
+					</xsd:choice>
+                    <xsd:element name="IncludePriceBreakdown" type="t_Empty" minOccurs="0"/>
+                    <xsd:element name="IncludeChargeConditions" type = "t_IncludeChargeConditions"  minOccurs="0"/>
+					<xsd:element name="Rooms" type="t_Rooms"/>
+					<xsd:choice minOccurs="0">
+						<xsd:element name="StarRating" type="t_StarRating" minOccurs="0" />
+						<xsd:element name="StarRatingRange" type="t_StarRatingRange"/>
+					</xsd:choice>
+					<xsd:element name="LocationCode" type="t_LocationCode" minOccurs="0"/>
+					<xsd:element name="FacilityCodes" type="t_FacilityCodes" minOccurs="0"/>
+					<xsd:element name="HotelTypeCode" type="t_HotelType" minOccurs="0"/>
+					<xsd:element name="OrderBy" type="t_OrderBy" minOccurs="0"/>
+					<xsd:element name="NumberOfReturnedItems" type="t_NumberOfReturnedItems" minOccurs="0"/>
+				</xsd:sequence>
+		 	</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchHotelPriceResponse">
+		<xsd:sequence>
+			<xsd:element name="PaymentMethod" type="t_PaymentMethod" minOccurs="0" maxOccurs="1"/>
+			<xsd:choice maxOccurs="1">
+			 	<xsd:element name="HotelDetails" type="t_HotelDetails"/>
+				<xsd:element name="Errors" type="t_Errors"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchHotelRoomsPriceRequest"> 
+		<xsd:complexContent> 
+			<xsd:extension base="t_SearchItemPriceRequest"> 
+				<xsd:sequence> 
+					<xsd:element name="PeriodOfStay" type="t_PeriodOfStay"/>
+					<xsd:choice minOccurs="0">
+						<xsd:element name="IncludeRecommended" type="t_Empty" minOccurs="0"/>
+						<xsd:element name="RecommendedOnly" type="t_Empty" minOccurs="0"/>
+					</xsd:choice>
+					<xsd:choice minOccurs="0">
+						<xsd:element name="StarRating" type="t_StarRating"/> 
+						<xsd:element name="StarRatingRange" type="t_StarRatingRange"/> 
+					</xsd:choice> 
+					<xsd:element name="LocationCode" type="t_LocationCode" minOccurs="0"/> 
+					<xsd:element name="FacilityCodes" type="t_FacilityCodes" minOccurs="0"/> 
+					<xsd:element name="HotelTypeCode" type="t_HotelType" minOccurs="0"/> 
+				</xsd:sequence> 
+			</xsd:extension> 
+		</xsd:complexContent> 
+	</xsd:complexType> 
+	<xsd:complexType name="t_SearchHotelRoomsPriceResponse"> 
+		<xsd:sequence> 
+			<xsd:choice> 
+				<xsd:element name="HotelDetails" type="t_HotelDetails"/> 
+				<xsd:element name="Errors" type="t_Errors"/> 
+			</xsd:choice> 
+		</xsd:sequence> 
+	</xsd:complexType> 
+	
+	<xsd:complexType name="t_SearchItemInformationRequest">
+		<xsd:sequence>
+			<xsd:element name="ItemDestination" type="t_ItemDestination"/>
+			<xsd:element name="LocationCode" type="t_LocationCode" minOccurs="0"/>
+			<xsd:element name="ItemName" type="t_SearchName" minOccurs="0"/>
+			<xsd:element name="ItemCode" type="t_ItemCode" minOccurs="0"/>
+			<xsd:choice minOccurs="0" maxOccurs="1">
+				<xsd:element name="SearchApartmentInformation" type="t_SearchApartmentInformation"/>
+				<xsd:element name="SearchHotelInformation" type="t_SearchHotelInformation"/>
+				<xsd:element name="SearchSightseeingInformation" type="t_SearchSightseeingInformation"/>
+				<xsd:element name="SearchTransferInformation" type="t_SearchTransferInformation"/>
+			</xsd:choice>
+		</xsd:sequence>
+		<xsd:attributeGroup ref="a_SearchItemInformation"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchItemInformationResponse">
+		<xsd:sequence>
+			<xsd:choice maxOccurs="1">
+				<xsd:element name="ItemDetails" type="t_ItemDetails"/>
+				<xsd:element name="Errors" type="t_Errors"/>
+			</xsd:choice>
+		</xsd:sequence>
+		<xsd:attributeGroup ref="a_SearchItemInformation"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchItemPricePropertyBase">
+		<xsd:complexContent>
+			<xsd:extension base="t_SearchItemPriceBase">
+				<xsd:sequence>
+					<xsd:element name="PeriodOfStay" type="t_PeriodOfStay"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchItemPriceBase">
+		<xsd:sequence>
+			<xsd:element name="ItemDestination" type="t_ItemDestination"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchItemPriceRequest">
+		<xsd:sequence>
+			<xsd:element name="ItemDestination" type="t_ItemDestination"/>
+			<xsd:element name="ImmediateConfirmationOnly" type="t_Empty" minOccurs="0"/>
+			<xsd:element name="ItemName" type="t_SearchName" minOccurs="0"/>
+			<xsd:element name="ItemCode" type="t_ItemCode" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchItemRequest">
+		<xsd:sequence>
+			<xsd:element name="ItemDestination" type="t_ItemDestination"/>
+			<xsd:element name="LocationCode" type="t_LocationCode" minOccurs="0"/>
+			<xsd:element name="ItemName" type="t_SearchName" minOccurs="0"/>
+			<xsd:element name="ItemCode" type="t_ItemCode" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="ItemType" type="t_ItemType" use="required"/>
+	</xsd:complexType>
+	 <xsd:complexType name="t_IncludeChargeConditions">
+	 	<xsd:attribute name="DateFormatResponse" type="xsd:boolean"  use="optional"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchItemResponse">
+		<xsd:sequence>
+			<xsd:choice maxOccurs="1">
+				<xsd:element name="ItemDetails" type="t_ItemDetails"/>
+				<xsd:element name="Errors" type="t_Errors"/>
+			</xsd:choice>
+		</xsd:sequence>
+		<xsd:attribute name="ItemType" type="t_ItemType"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchLanguageRequest">
+		<xsd:sequence>
+			<xsd:element name="LanguageName" type="t_SearchName" minOccurs="0"/>
+			<xsd:element name="LanguageCode" type="t_LanguageCode" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="ISO" type="xsd:boolean" use="optional"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchLanguageResponse">
+		<xsd:sequence>
+			<xsd:choice maxOccurs="1">
+				<xsd:element name="LanguageDetails" type="t_LanguageDetails"/>
+				<xsd:element name="Errors" type="t_Errors"/>
+			</xsd:choice>
+		</xsd:sequence>
+		<xsd:attribute name="ISO" type="xsd:boolean" use="optional"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchLinkRequest">
+		<xsd:sequence>
+			<xsd:element name="ItemDestination" type="t_ItemDestination"/>
+			<xsd:element name="ItemName" type="t_SearchName" minOccurs="0"/>
+			<xsd:element name="ItemCode" type="t_ItemCode" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attributeGroup ref="a_SearchLink"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchLinkResponse">
+		<xsd:sequence>
+			<xsd:choice maxOccurs="1">
+				<xsd:element name="LinkDetails" type="t_LinkDetails"/>
+				<xsd:element name="Errors" type="t_Errors"/>
+			</xsd:choice>
+		</xsd:sequence>
+		<xsd:attributeGroup ref="a_SearchLink"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchLocationRequest">
+		<xsd:sequence>
+			<xsd:element name="LocationName" type="t_SearchName" minOccurs="0"/>
+			<xsd:element name="LocationCode" type="t_LocationCode" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="CityCode" type="t_CityCode" use="optional"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchLocationResponse">
+		<xsd:sequence>
+			<xsd:choice maxOccurs="1">
+				<xsd:element name="LocationDetails" type="t_LocationDetails"/>
+				<xsd:element name="Errors" type="t_Errors"/>
+			</xsd:choice>
+		</xsd:sequence>
+		<xsd:attribute name="CityCode" type="t_CityCode"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchMealTypeRequest">
+		<xsd:sequence>
+			<xsd:element name="MealTypeName" type="t_SearchName" minOccurs="0"/>
+			<xsd:element name="MealTypeCode" type="t_MealCode" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchMealTypeResponse">
+		<xsd:sequence>
+			<xsd:choice maxOccurs="1">
+				<xsd:element name="MealTypeDetails" type="t_MealTypes"/>
+				<xsd:element name="Errors" type="t_Errors"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchRoomTypeRequest">
+		<xsd:sequence>
+			<xsd:element name="RoomTypeName" type="t_SearchName" minOccurs="0"/>
+			<xsd:element name="RoomTypeCode" type="t_RoomCode" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchRoomTypeResponse">
+		<xsd:sequence>
+			<xsd:choice maxOccurs="1">
+				<xsd:element name="RoomTypeDetails" type="t_RoomTypes"/>
+				<xsd:element name="Errors" type="t_Errors"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchRemarkRequest">
+		<xsd:sequence>
+			<xsd:element name="RemarkName" type="t_SearchName" minOccurs="0"/>
+			<xsd:element name="RemarkCode" type="t_RemarkCode" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="ItemType" type="t_ItemType" use="required"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchRemarkResponse">
+		<xsd:sequence>
+			<xsd:choice maxOccurs="1">
+				<xsd:element name="RemarkDetails" type="t_Remarks"/>
+				<xsd:element name="Errors" type="t_Errors"/>
+			</xsd:choice>
+		</xsd:sequence>
+		<xsd:attribute name="ItemType" type="t_ItemType" use="required"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchSightseeingInformation">
+		<xsd:sequence>
+			<xsd:element name="DateRange" type="t_DateRange" minOccurs="0"/>
+			<xsd:element name="TypeCodes" type="t_TypeCodes" minOccurs="0" maxOccurs="1" />
+			<xsd:element name="CategoryCode" type="t_CategoryCode" minOccurs="0" maxOccurs="1" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchSightseeingPriceRequest">
+		<xsd:complexContent>
+			<xsd:extension base="t_SearchItemPriceRequest">
+				<xsd:sequence>
+					<xsd:element name="TourDate" type="t_Date"/>
+					<xsd:element name="NumberOfAdults" type="t_NumberOfAdults"/>
+					<xsd:element name="Children" type="t_Children" minOccurs="0"/>
+					<xsd:element name="TypeCodes" type="t_TypeCodes" minOccurs="0" maxOccurs="1" />
+					<xsd:element name="CategoryCode" type="t_CategoryCode" minOccurs="0" maxOccurs="1" />
+					<xsd:choice minOccurs="0">
+						<xsd:element name="IncludeRecommended" type="t_Empty" minOccurs="0" />
+						<xsd:element name="RecommendedOnly" type="t_Empty" minOccurs="0" />
+					</xsd:choice>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchSightseeingPriceResponse">
+		<xsd:sequence>
+			<xsd:choice maxOccurs="1">
+				<xsd:element name="SightseeingDetails" type="t_SightseeingDetails"/>
+				<xsd:element name="Errors" type="t_Errors"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchSpecialEventRequest">
+		<xsd:sequence>
+			<xsd:element name="ItemDestination" type="t_ItemDestination"/>
+			<xsd:element name="DateRange" type="t_DateRange" minOccurs="0"/>
+			<xsd:element name="SpecialEventName" type="t_SearchName" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchSpecialEventResponse">
+		<xsd:sequence>
+			<xsd:choice maxOccurs="1">
+				<xsd:element name="SpecialEventDetails" type="t_SpecialEventDetails"/>
+				<xsd:element name="Errors" type="t_Errors"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchSpecialOfferRequest">
+		<xsd:sequence>
+			<xsd:element name="PassengerNationality" type="t_CountryCode"/>
+			<xsd:element name="Offer" type="t_OfferCode" minOccurs="0"/>
+			<xsd:choice minOccurs="1">
+                <xsd:element name="Country" type="t_CountryISOCode"/>
+                <xsd:element name="City" type="t_CityCode"/>
+            </xsd:choice>
+			<xsd:element name="Item" type="t_ItemCode" minOccurs="0"/>
+			<xsd:element name="TravelDates" type="t_DateRange" minOccurs="0"/>
+			<xsd:element name="EffectiveDate" type="t_Date" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="ItemType" type="t_ItemType" use="required"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchSpecialOfferResponse">
+		<xsd:sequence>
+			<xsd:choice>
+				<xsd:element name="ItemSpecialOffer" type="t_ItemSpecialOffer" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element name="Errors" type="t_Errors"/>
+			</xsd:choice>
+		</xsd:sequence>
+		<xsd:attribute name="ItemType" type="t_ItemType"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchStationRequest">
+		<xsd:sequence>
+			<xsd:element name="ItemDestination" type="t_ItemDestination"/>
+			<xsd:element name="StationName" type="t_SearchName" minOccurs="0"/>
+			<xsd:element name="StationCode" type="t_StationCode" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchStationResponse">
+		<xsd:sequence>
+			<xsd:choice maxOccurs="1">
+				<xsd:element name="StationDetails" type="t_StationDetails"/>
+				<xsd:element name="Errors" type="t_Errors"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchTransferInformation"/>
+	<xsd:complexType name="t_SearchTransferListRequest">
+		<xsd:sequence>
+			<xsd:element name="Description" type="t_SearchName" minOccurs="0"/>
+			<xsd:element name="Code" type="t_ListCode" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="ListType" type="t_ListType" use="required"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchTransferListResponse">
+		<xsd:sequence>
+			<xsd:choice maxOccurs="1">
+				<xsd:element name="ListDetails" type="t_ListDetails"/>
+				<xsd:element name="Errors" type="t_Errors"/>
+			</xsd:choice>
+		</xsd:sequence>
+		<xsd:attribute name="ListType" type="t_ListType"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchTransferPriceRequest">
+		<xsd:sequence>
+			<xsd:element name="ImmediateConfirmationOnly" type="t_Empty" minOccurs="0"/>
+			<xsd:element name="ItemName" type="t_SearchName" minOccurs="0"/>
+			<xsd:element name="ItemCode" type="t_ItemCode" minOccurs="0"/>
+			<xsd:element name="TransferPickUp" type="t_TransferPickUp"/>
+			<xsd:element name="TransferDropOff" type="t_TransferDropOff"/>
+			<xsd:element name="TransferDate" type="t_Date"/>
+			<xsd:element name="NumberOfPassengers" type="t_NumberOfPassengers"/>
+			<xsd:element name="PreferredLanguage" type="t_LanguageCode"/>
+			<xsd:element name="AlternateLanguage" type="t_LanguageCode" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchRecommendedItemRequest">
+		<xsd:sequence>
+			<xsd:element name="ItemDestination" type="t_ItemDestination" minOccurs = "0"/>
+			<xsd:element name="Nationality" type="t_NationalityCode" minOccurs = "0"/>			
+			<xsd:element name="TravelDates" type="t_DateRange" minOccurs="0"/>		
+		</xsd:sequence>
+		<xsd:attribute name="ItemType" type="t_ItemType" use="required"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchTransferPriceResponse">
+		<xsd:sequence>
+			<xsd:choice maxOccurs="1">
+				<xsd:element name="TransferDetails" type="t_TransferDetails"/>
+				<xsd:element name="Errors" type="t_Errors"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_Sightseeing">
+		<xsd:sequence>
+			<xsd:element name="City" type="t_City"/>
+			<xsd:element name="Item" type="t_Item"/>
+			<xsd:element name="Duration" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="SightseeingTypes" type="t_SightseeingTypes" minOccurs="0" maxOccurs="1" />
+			<xsd:element name="SightseeingCategories" type="t_SightseeingCategories" minOccurs="0" maxOccurs="1" />
+			<xsd:element name="AdditionalInformation" type="t_AdditionalInformation" minOccurs="0"/>
+			<xsd:element name="TourOperations" type="t_TourOperations" minOccurs="0" maxOccurs="1" />
+		</xsd:sequence>
+		<xsd:attributeGroup ref="a_Sightseeing"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_SightseeingCategories">
+		<xsd:sequence>
+			<xsd:element name="SightseeingCategory" type="t_SightseeingCategory" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SightseeingCategory">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Name">
+				<xsd:attribute name="Code" type="t_CategoryCode" />
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_SightseeingDetails">
+		<xsd:sequence>
+			<xsd:element name="Sightseeing" type="t_Sightseeing" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SightseeingInformation">
+		<xsd:sequence>
+			<xsd:element name="TourSummary" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="Duration" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="SightseeingTypes" type="t_SightseeingTypes" minOccurs="0" maxOccurs="1" />
+			<xsd:element name="SightseeingCategories" type="t_SightseeingCategories" minOccurs="0" maxOccurs="1" />
+			<xsd:element name="TheTour" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="Includes" type="xsd:string" minOccurs="0" />
+			<xsd:element name="PleaseNote" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="DeparturePoints" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="AdditionalInformation" type="t_AdditionalInformation" minOccurs="0"/>
+			<xsd:element name="TourOperations" type="t_TourOperations" minOccurs="0"/>
+			<xsd:element name="ClosedDates" type="t_ClosedDates" minOccurs="0"/>
+			<xsd:element name="Links" type="t_Links" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SightseeingItem">
+		<xsd:sequence>
+			<xsd:element name="TourDate" type="t_Date"/>
+			<xsd:element name="TourLanguage" type="t_Language" minOccurs="0"/>
+			<xsd:element name="SpecialItem" type="t_SpecialItem" minOccurs="0"/>
+			<xsd:element name="PaxIds" type="t_PaxIds"/>
+			<xsd:element name="TourDeparture" type="t_Departure" minOccurs="0"/>
+			<xsd:element name="TourSupplier" type="t_TourSupplier" minOccurs="0"/>
+			<xsd:element name="PleaseNote" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SightseeingItemPriceBreakdown">
+		<xsd:sequence>
+			<xsd:element name="TourDate" type="t_Date" />
+			<xsd:element name="PaxTypes" type="t_PaxTypesBreakdown" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>		
+	<xsd:complexType name="t_SightseeingPriceBreakdownRequest">
+		<xsd:all>
+			<xsd:element name="City" type="t_CityCode" />
+			<xsd:element name="Item" type="t_Item" />
+			<xsd:element name="TourDate" type="t_Date" />
+			<xsd:element name="TourLanguage" type="t_Language" minOccurs="0" />
+			<xsd:element name="SpecialCode" type="t_SpecialCode" minOccurs="0" />
+			<xsd:element name="NumberOfAdults" type="t_NumberOfAdults" />
+			<xsd:element name="Children" type="t_Children" minOccurs="0" />
+		</xsd:all>
+	</xsd:complexType>
+	<xsd:complexType name="t_SightseeingPriceBreakdownResponse">
+		<xsd:sequence>
+			<xsd:choice maxOccurs="1" minOccurs="0">
+				<xsd:sequence>
+					<xsd:element name="ItemCity" type="t_City" />
+					<xsd:element name="Item" type="t_Item" />
+					<xsd:element name="ItemPrice" type="t_BookingPrice" />
+					<xsd:element name="SightseeingItem" type="t_SightseeingItemPriceBreakdown" />
+                </xsd:sequence>
+                <xsd:element name="Errors" type="t_Errors"/>
+            </xsd:choice>
+				</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchSightseeingTypeRequest">
+		<xsd:choice>
+			<xsd:element name="SightseeingTypeCode" type="t_TypeCode" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="SightseeingTypeName" type="t_Name" minOccurs="0" maxOccurs="1"/>
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchSightseeingTypeResponse">
+	<xsd:sequence>
+		<xsd:choice maxOccurs="1" minOccurs="0">
+			<xsd:element name="SightseeingTypes" type="t_SightseeingTypes" minOccurs="0"/>
+			<xsd:element name="Errors" type="t_Errors" minOccurs="0"/>
+		</xsd:choice>
+	</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchSightseeingCategoryRequest">
+		<xsd:choice>
+			<xsd:element name="SightseeingCategoryCode" type="t_TypeCode" minOccurs="0" maxOccurs="1"/>
+			<xsd:element name="SightseeingCategoryName" type="t_Name" minOccurs="0" maxOccurs="1"/>
+		</xsd:choice>
+	</xsd:complexType>
+	<xsd:complexType name="t_SearchSightseeingCategoryResponse">
+		<xsd:sequence>
+			<xsd:choice maxOccurs="1" minOccurs="0">
+				<xsd:element name="SightseeingCategories" type="t_SightseeingCategories"/>
+				<xsd:element name="Errors" type="t_Errors" />
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>	
+	<xsd:complexType name="t_SightseeingType">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Name">
+				<xsd:attribute name="Code" type="t_TypeCode" />
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_SightseeingTypes">
+		<xsd:sequence>
+			<xsd:element name="SightseeingType" type="t_SightseeingType" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_Source">
+		<xsd:sequence>
+			<xsd:element name="RequestorID" type="t_RequestorID"/>
+			<xsd:element name="RequestorPreferences" type="t_RequestorPreferences"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SpecialEventDetail">
+		<xsd:sequence>
+			<xsd:element name="City" type="t_City"/>
+			<xsd:element name="DateRange" type="t_DateRange"/>
+			<xsd:element name="Event" type="t_Name"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SpecialEventDetails">
+		<xsd:sequence>
+			<xsd:element name="SpecialEventDetail" type="t_SpecialEventDetail" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SpecialItem">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Name">
+				<xsd:attribute name="Code" type="t_SpecialCode"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_SpecialOffer">
+		<xsd:sequence>
+			<xsd:element name="Offer" type="t_Offer" minOccurs="0"/>
+			<xsd:element name="TravelDates" type="t_DateRange" minOccurs="0"/>
+			<xsd:element name="OfferType" type="t_OfferType" minOccurs="0"/>
+			<xsd:element name="EffectiveDates" type="t_DateRange" minOccurs="0"/>
+			<xsd:element name="StayForNights" type="t_Duration" minOccurs="0"/>
+			<xsd:element name="PayForNights" type="t_Duration" minOccurs="0"/>
+			<xsd:element name="DiscountPercentage" type="t_Percentage" minOccurs="0"/>
+			<xsd:element name="MaximumNightsFree" type="t_Duration" minOccurs="0"/>
+			<xsd:element name="AllowedArrivalDates" type="t_DurationDays" minOccurs="0"/>
+			<xsd:element name="ValidStayDates" type="t_DurationDays" minOccurs="0"/>
+			<xsd:element name="ApplicableOfferNights" type="t_DurationDays" minOccurs="0"/>
+			<xsd:element name="ClosedDates" type="t_ClosedDates" minOccurs="0"/>
+			<xsd:choice minOccurs="0">
+				<xsd:element name="BookBefore" type="t_Date" minOccurs="0"/>
+				<xsd:element name="BookBeforeDays" type="xsd:int" minOccurs="0"/>
+			</xsd:choice>
+			<xsd:choice minOccurs="0">
+				<xsd:element name="BookAfter" type="t_Date" minOccurs="0"/>
+				<xsd:element name="BookWithin" type="xsd:int" minOccurs="0"/>
+			</xsd:choice>
+			<xsd:element name="RoomCategories" type="t_RoomCategories" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_SpecialOffers">
+		<xsd:sequence>
+			<xsd:element name="SpecialOffer" type="t_SpecialOffer" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_StarRating">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Rating">
+				<xsd:attribute name="MinimumRating" type="xsd:boolean"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+    <xsd:complexType name="t_StarRatingRange">
+        <xsd:sequence>
+            <xsd:element name="Min" type="t_Rating"/>
+            <xsd:element name="Max" type="t_Rating"/>
+        </xsd:sequence>
+    </xsd:complexType>
+	<xsd:complexType name="t_Station">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Name">
+				<xsd:attribute name="Code" type="t_StationCode" use="optional"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_StationDetail">
+		<xsd:sequence>
+			<xsd:element name="City" type="t_City"/>
+			<xsd:element name="Station" type="t_Station"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_StationDetails">
+		<xsd:sequence>
+			<xsd:element name="StationDetail" type="t_StationDetail" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_Status">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Name">
+				<xsd:attribute name="Code" type="t_StatusCode"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_TimeDuration">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Name">
+				<xsd:attribute name="Time" type="t_Time" use="optional"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_TourLanguages">
+		<xsd:sequence>
+			<xsd:element name="TourLanguage" type="t_Language" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="Code" type="t_LanguageCode" use="optional"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_TourOperation">
+		<xsd:sequence>
+			<xsd:element name="TourLanguages" type="t_TourLanguages" minOccurs="0"/>
+			<xsd:element name="SpecialItem" type="t_SpecialItem" minOccurs="0"/>
+			<xsd:element name="Commentary" type="t_Commentary" minOccurs="0"/>
+			<xsd:element name="DateRange" type="t_DateRange" minOccurs="0"/>
+			<xsd:element name="Frequency" type="t_Frequency" minOccurs="0"/>
+			<xsd:element name="Departures" type="t_Departures" minOccurs="0"/>
+			<xsd:element name="ItemPrice" type="t_PriceDetails" minOccurs="0"/>
+			<xsd:element name="Confirmation" type="t_ItemConfirmation" minOccurs="0"/>
+			<xsd:element name="EssentialInformation" type="t_EssentialInformation" minOccurs="0"/>
+			<xsd:element name="OverrideText" type="t_OverrideText" minOccurs="0" />			
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_TourOperations">
+		<xsd:sequence>
+			<xsd:element name="TourOperation" type="t_TourOperation" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_TourSupplier">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Name">
+				<xsd:attribute name="Code" type="t_SupplierCode"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_Transfer">
+		<xsd:sequence>
+			<xsd:element name="City" type="t_City"/>
+			<xsd:element name="Item" type="t_Item"/>
+			<xsd:element name="PickUpDetails" type="t_PickUpDetails" minOccurs="0"/>
+			<xsd:element name="DropOffDetails" type="t_DropOffDetails" minOccurs="0"/>
+			<xsd:element name="OutOfHoursSupplements" type="t_OutOfHoursSupplements" minOccurs="0" />
+			<xsd:element name="ApproximateTransferTime" type="t_TimeDuration" minOccurs="0"/>
+			<xsd:element name="TransferVehicles" type="t_TransferVehicles" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attributeGroup ref="a_Transfer"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_TransferConditions">
+		<xsd:sequence>
+			<xsd:element name="TransferCondition" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_TransferDetails">
+		<xsd:sequence>
+			<xsd:element name="Transfer" type="t_Transfer" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_TransferDropOff">
+		<xsd:sequence>
+			<xsd:element name="DropOffCityCode" type="t_CityCode" minOccurs="0"/>
+			<xsd:element name="DropOffCode" type="t_TransferPointCode"/>
+			<xsd:element name="DropOffPointCode" type="t_TransferPointLocationCode" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_TransferInformation">
+		<xsd:sequence>
+			<xsd:element name="PickUpDetails" type="t_PickUpDetails" minOccurs="0"/>
+			<xsd:element name="DropOffDetails" type="t_DropOffDetails" minOccurs="0"/>
+			<xsd:element name="ApproximateTransferTime" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="Links" type="t_Links" minOccurs="0"/>
+			<xsd:element name="Description" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="MeetingPoint" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="TransferVehicles" type="t_TransferVehicles" minOccurs="0"/>
+			<xsd:element name="TransferConditions" type="t_TransferConditions" minOccurs="0"/>
+			<xsd:element name="TransferType" type="t_TransferType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_TransferItem">
+		<xsd:sequence>
+			<xsd:element name="PickUpDetails" type="t_PickUpDetails" minOccurs="0"/>
+			<xsd:element name="DropOffDetails" type="t_DropOffDetails" minOccurs="0"/>
+			<xsd:element name="TransferDate" type="t_Date"/>
+			<xsd:element name="TransferLanguage" type="t_Language" minOccurs="0"/>
+			<xsd:element name="TransferVehicle" type="t_TransferVehicle" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_TransferPickUp">
+		<xsd:sequence>
+			<xsd:element name="PickUpCityCode" type="t_CityCode"/>
+			<xsd:element name="PickUpCode" type="t_TransferPointCode"/>
+			<xsd:element name="PickUpPointCode" type="t_TransferPointLocationCode" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_TransferPoint">
+		<xsd:sequence>
+			<xsd:element name="TransferPointLocation" type="t_TransferPointLocation" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="Code" type="t_TransferPointCode"/>
+	</xsd:complexType>
+	<xsd:complexType name="t_TransferPointLocation">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Name">
+				<xsd:attribute name="Code" type="t_TransferPointLocationCode"/>
+				<xsd:attribute name="AllowForCheckInTime" type="t_Time" use="optional"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_TransferType">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Name">
+				<xsd:attribute name="Code" type="t_TransferTypeCode"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_TransferVehicle">
+		<xsd:sequence>
+			<xsd:element name="Vehicle" type="t_Vehicle" minOccurs="0"/>
+			<xsd:element name="Passengers" type="t_NumberOfPassengers" minOccurs="0"/>
+			<xsd:element name="LeadPaxId" type="t_PaxId" minOccurs="0"/>
+			<xsd:choice minOccurs="0" maxOccurs="1">
+				<xsd:element name="Languages" type="t_Languages"/>
+				<xsd:element name="Language" type="t_Language"/>
+			</xsd:choice>
+			<xsd:element name="ItemPrice" type="t_PriceDetails" minOccurs="0"/>
+			<xsd:element name="Confirmation" type="t_ItemConfirmation" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_TransferVehicles">
+		<xsd:sequence>
+			<xsd:element name="TransferVehicle" type="t_TransferVehicle" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_TypeCodes">
+		<xsd:sequence>
+			<xsd:element name="TypeCode" type="t_TypeCode" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_UnitRoom">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Name">
+				<xsd:attributeGroup ref="a_Room"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_Vehicle">
+		<xsd:simpleContent>
+			<xsd:extension base="t_Name">
+				<xsd:attributeGroup ref="a_Vehicle"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:complexType name="t_Where">
+		<xsd:sequence>
+			<xsd:element name="City" type="t_City" minOccurs="0"/>
+			<xsd:choice minOccurs="0" maxOccurs="1">
+				<xsd:element name="Airport" type="t_Airport"/>
+				<xsd:element name="Apartment" type="t_Item"/>
+				<xsd:element name="Hotel" type="t_Item"/>
+				<xsd:element name="MeetingPoint" type="t_Item"/>
+				<xsd:element name="Station" type="t_Station"/>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="t_DeDupRoom">
+		<xsd:sequence>
+			<xsd:element name="DeDupKey" type="xsd:string" />
+		</xsd:sequence>
+		<xsd:attributeGroup ref="a_DeDupRoom" />
+	</xsd:complexType>	
+</xsd:schema>

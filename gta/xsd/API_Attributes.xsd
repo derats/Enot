@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:include schemaLocation="API_SimpleTypes.xsd"/>
+	<xsd:annotation>
+		<xsd:documentation>Copyright 2006 (c) Gullivers Travels Associates Ltd. All rights reserved.</xsd:documentation>
+	</xsd:annotation>
+	<xsd:attributeGroup name="a_Apartment">
+		<xsd:attribute name="Code" type="t_ApartmentCode"/>
+		<xsd:attribute name="Sleeps" type="xsd:nonNegativeInteger" use="optional"/>
+		<xsd:attribute name="NumberOfCots" type="t_NumberOfCots" use="optional"/>
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name="a_Authentication">
+		<xsd:attribute name="Client" type="t_Client" use="required"/>
+		<xsd:attribute name="EMailAddress" type="t_EMailAddress" use="required"/>
+		<xsd:attribute name="Password" type="t_Password" use="required"/>
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name="a_AvailableRoom">
+		<xsd:attribute name="Code" type="t_RoomCode" use="optional"/>
+		<xsd:attribute name="NumberOfRooms" type="t_NumberOfRooms" use="optional"/>
+		<xsd:attribute name="NumberOfCots" type="t_NumberOfCots" use="optional"/>
+		<xsd:attribute name="ExtraBed" type="xsd:boolean" use="optional"/>
+		<xsd:attribute name="NumberOfExtraBeds" type="t_NumberOfExtraBeds" use="optional"/>
+    </xsd:attributeGroup>
+    <xsd:attributeGroup name="a_CacheHotel">
+		<xsd:attribute name="City" type="xsd:string" use="required"/>
+        <xsd:attribute name="Item" type="xsd:string" use="required"/>
+        <xsd:attribute name="RecommendedItem" type="xsd:boolean" use="optional"/>
+    </xsd:attributeGroup>
+    <xsd:attributeGroup name="a_CacheItemDestination">
+		<xsd:attribute name="DestinationType" type="t_DestinationType" use="required"/>
+		<xsd:attribute name="DestinationCode" type="t_CityCode" use="required"/>
+		<xsd:attribute name="ItemCode" type="t_ItemCode" use="optional"/>
+	</xsd:attributeGroup>
+    <xsd:attributeGroup name="a_CacheOffer">
+		<xsd:attribute name="Code" type="xsd:string" use="required"/>
+		<xsd:attribute name="MinimumStay" type="xsd:nonNegativeInteger" use="optional"/>
+		<xsd:attribute name="BookBefore" type="t_Date" use="optional"/>
+		<xsd:attribute name="BookBeforeDays" type="xsd:nonNegativeInteger" use="optional"/>
+		<xsd:attribute name="StayForNights" type="xsd:nonNegativeInteger" use="optional"/>
+		<xsd:attribute name="PayForNights" type="xsd:nonNegativeInteger" use="optional"/>
+		<xsd:attribute name="BookAfter" type="t_Date" use="optional"/>
+		<xsd:attribute name="BookWithin" type="xsd:nonNegativeInteger" use="optional"/>
+	</xsd:attributeGroup>
+    <xsd:attributeGroup name="a_CacheRoomPrice">
+        <xsd:attribute name="Code" type="xsd:string" use="required"/>
+        <xsd:attribute name="FromAge" type="xsd:integer" use="optional"/>
+        <xsd:attribute name="ToAge" type="xsd:integer" use="optional"/>
+    </xsd:attributeGroup>
+	<xsd:attributeGroup name="a_ChargeCondition">
+		<xsd:attribute name="Type" type="xsd:string" use="optional"/>
+		<xsd:attribute name="Allowable" type="xsd:boolean" use="optional"/>
+		<xsd:attribute name="MaximumPossibleChargesShown" type="xsd:boolean" use="optional"/>
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name="a_Condition">
+		<xsd:attribute name="Allowable" type="xsd:boolean" use="optional"/>
+		<xsd:attribute name="Charge" type="xsd:boolean" use="optional"/>
+		<xsd:attribute name="FromDay" type="xsd:nonNegativeInteger" use="optional"/>
+		<xsd:attribute name="ToDay" type="xsd:nonNegativeInteger" use="optional"/>
+		<xsd:attribute name="FromDate" type="t_Date" use="optional"/>
+		<xsd:attribute name="ToDate" type="t_Date" use="optional"/>
+		<xsd:attribute name="Currency" type="t_CurrencyISOCode" use="optional"/>
+		<xsd:attribute name="ChargeAmount" type="t_Price" use="optional"/>
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name="a_DateRange">
+		<xsd:attribute name="DateType" type="t_DateType" use="optional"/>
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name="a_DeparturePoint">
+		<xsd:attribute name="Code" type="t_DeparturePointCode" use="optional"/>
+		<xsd:attribute name="Hotel" type="t_ItemCode" use="optional"/>
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name="a_DepartureTime">
+		<xsd:attribute name="NextDay" type="xsd:boolean" use="optional" />
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name="a_ErrorContext">
+		<xsd:attribute name="Sequence" type="xsd:positiveInteger"/>
+		<xsd:attribute name="ItemReference" type="t_ItemReference" use="optional" />
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name="a_Hotel">
+		<xsd:attribute name="HasExtraInfo" type="xsd:boolean" use="optional"/>
+		<xsd:attribute name="HasMap" type="xsd:boolean" use="optional"/>
+		<xsd:attribute name="HasPictures" type="xsd:boolean" use="optional"/>
+		<xsd:attribute name="HasImportantInfo" type="xsd:boolean" use="optional"/>
+        	<xsd:attribute name="Recommended" type="xsd:boolean" use="optional"/>
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name="a_HotelRoom">
+		<xsd:attribute name="Code" type="t_RoomCode"/>
+		<xsd:attribute name="Id" type="xsd:string" use="optional"/>
+		<xsd:attribute name="ExtraBed" type="xsd:boolean" use="optional"/>
+		<xsd:attribute name="NumberOfExtraBeds" type="t_NumberOfExtraBeds" use="optional" />
+		<xsd:attribute name="SharingBedding" type="xsd:boolean" use="optional"/>
+		<xsd:attribute name="NumberOfCots" type="t_NumberOfCots" use="optional"/>
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name="a_ImageLink">
+		<xsd:attribute name="Height" type="xsd:nonNegativeInteger" use="optional"/>
+		<xsd:attribute name="Width" type="xsd:nonNegativeInteger" use="optional"/>
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name="a_ItemDestination">
+		<xsd:attribute name="DestinationType" type="t_DestinationType" use="required"/>
+		<xsd:attribute name="DestinationCode" type="t_CityCode" use="optional"/>
+		<xsd:attribute name="Longitude" type="t_Coordinate" use="optional"/>
+		<xsd:attribute name="Latitude" type="t_Coordinate" use="optional"/>
+		<xsd:attribute name="RadiusKm" type="xsd:double" use="optional"/>
+	 </xsd:attributeGroup>
+	<xsd:attributeGroup name="a_ItemSupplement">
+		<xsd:attribute name="Code" type="t_SupplementCode"/>
+		<xsd:attribute name="Quantity" type="xsd:integer" use="optional"/>
+		<xsd:attribute name="Price" type="t_Price" use="optional" />		
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name="a_Language">
+		<xsd:attribute name="Code" type="t_LanguageCode" use="optional"/>
+		<xsd:attribute name="LanguageList" type="t_LanguageCode" use="optional"/>
+		<xsd:attribute name="Language" type="t_LanguageISOCode" use="optional"/>
+		<xsd:attribute name="LanguageListCode" type="t_LanguageListCode" use="optional"/>
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name="a_MeetingPoint">
+		<xsd:attribute name="Code" type="t_ItemCode" use="optional" />
+		<xsd:attribute name="City" type="t_CityCode" use="optional" />
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name="a_PassengerNameChange">
+		<xsd:attribute name="Allowable" type="xsd:boolean" use="required"/>
+		<xsd:attribute name="FromDay" type="xsd:nonNegativeInteger" use="optional"/>
+		<xsd:attribute name="ToDay" type="xsd:nonNegativeInteger" use="optional"/>
+		<xsd:attribute name="FromDate" type="t_Date" use="optional"/>
+		<xsd:attribute name="ToDate" type="t_Date" use="optional"/>
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name="a_PaxName">
+		<xsd:attribute name="PaxId" type="t_PaxId" use="required"/>
+		<xsd:attribute name="LeadName" type="xsd:boolean" use="optional"/>
+		<xsd:attribute name="PaxType" type="t_PaxType" use="optional"/>
+		<xsd:attribute name="ChildAge" type="t_ChildAge" use="optional"/>
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name="a_PaxType">
+		<xsd:attribute name="Type" type="t_Type" use="required"/> 
+		<xsd:attribute name="Age" type="t_ChildAge" use="optional" />		
+		<xsd:attribute name="Quantity" type="t_NonNegativeInt" use="required" />		
+		<xsd:attribute name="Gross" type="t_Price" use="required" />
+	</xsd:attributeGroup>	
+	<xsd:attributeGroup name="a_PriceDetails">
+		<xsd:attribute name="Nights" type="xsd:nonNegativeInteger" use="optional"/>
+		<xsd:attribute name="Currency" type="t_CurrencyISOCode" use="optional"/>
+		<xsd:attribute name="Gross" type="t_Price" use="optional"/>
+		<xsd:attribute name="Commission" type="t_Price" use="optional"/>
+		<xsd:attribute name="CommissionIndicator" type="xsd:string" use="optional"/>
+		<xsd:attribute name="Nett" type="t_Price" use="optional"/>
+		<xsd:attribute name="Available" type="xsd:boolean" use="optional"/>
+		<xsd:attribute name="IncludedOfferDiscount" type="t_Price" use="optional" />
+		<xsd:attribute name="GrossWithoutDiscount" type="t_Price" use="optional" />
+        <xsd:attribute name="NoOfferDiscount" type="xsd:boolean" use="optional"/>
+		<xsd:attribute name="RSP" type="t_Price" use="optional"/>
+		<xsd:attribute name="CommissionPercentage" type="t_Price" use="optional"/>
+	</xsd:attributeGroup>
+    <xsd:attributeGroup name="a_Rate">
+		<xsd:attribute name="MinPax" type="xsd:integer" use="required"/>
+        <xsd:attribute name="MinNights" type="xsd:integer" use="required"/>
+        <xsd:attribute name="Meals" type="xsd:string" use="optional"/>
+        <xsd:attribute name="PriceType" type="xsd:string" use="optional"/>
+    </xsd:attributeGroup>
+	<xsd:attributeGroup name="a_Remark">
+		<xsd:attribute name="Code" type="t_RemarkCode" use="optional"/>
+		<xsd:attribute name="DeliveryPoint" type="t_DeliveryPoint" use="optional"/>
+		<xsd:attribute name="RemarkDate" type="t_Date" use="optional"/>
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name="a_Request">
+		<xsd:attribute name="RequestReference" type="t_Reference" use="optional"/>
+		<xsd:attribute name="TimeStamp" type="xsd:dateTime" use="optional"/>
+		<xsd:attribute name="SequenceNumber" type="t_NonNegativeInt" use="optional"/>
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name="a_RequestorPreferences">
+		<xsd:attribute name="Language" type="t_LanguageISOCode" use="optional"/>
+		<xsd:attribute name="Currency" type="t_CurrencyISOCode" use="optional"/>
+		<xsd:attribute name="Country" type="t_CountryISOCode" use="optional"/>
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name="a_Response">
+		<xsd:attribute name="RequestReference" type="t_Reference" use="optional"/>
+		<xsd:attribute name="ResponseReference" type="xsd:string"/>
+		<xsd:attribute name="ResponseSequence" type="t_NonNegativeInt" use="optional"/>
+		<xsd:attribute name="TimeStamp" type="xsd:dateTime" use="optional"/>
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name="a_ResponseDetails">
+		<xsd:attribute name="Language" type="t_LanguageISOCode" use="optional"/>
+		<xsd:attribute name="Currency" type="t_CurrencyISOCode" use="optional"/>
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name="a_ResponseHotelRoom">
+	        <xsd:attribute name="Code" type="t_RoomCode"/>
+            <xsd:attribute name="Id" type="xsd:string" use="optional"/>
+	        <xsd:attribute name="ExtraBed" type="xsd:boolean" use="optional"/>
+	        <xsd:attribute name="SharingBedding" type="xsd:boolean" use="optional"/>
+	        <xsd:attribute name="NumberOfCots" type="t_NumberOfCots" use="optional"/>
+	        <xsd:attribute name="NumberOfExtraBeds" type="t_NumberOfExtraBedsResponse" use="optional" />
+	        <xsd:attribute name="NumberOfRooms" type="t_NumberOfRooms" use="optional"/>
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name="a_Room">
+		<xsd:attribute name="Code" type="t_RoomCode" use="optional"/>
+        <xsd:attribute name="Id" type="xsd:string" use="optional"/>
+		<xsd:attribute name="Description" type="xsd:string" use="optional"/>
+		<xsd:attribute name="Quantity" type="t_NonNegativeInt" use="optional"/>
+		<xsd:attribute name="NumberOfRooms" type="t_NumberOfRooms" use="optional"/>
+		<xsd:attribute name="NumberOfCots" type="t_NumberOfCots" use="optional"/>
+		<xsd:attribute name="ChildAge" type="t_NonNegativeInt" use="optional"/>
+		<xsd:attribute name="NumberOfChildren" type="t_NonNegativeInt" use="optional"/>
+		<xsd:attribute name="SharingBedding" type="xsd:boolean" use="optional"/> 
+		<xsd:attribute name="FromAge" type="t_NonNegativeInt" use="optional"/> 
+		<xsd:attribute name="ToAge" type="t_NonNegativeInt" use="optional"/> 
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name="a_RoomCategory">
+		<xsd:attribute name="Id" type="xsd:string" use="optional"/>
+		<xsd:attribute name="Code" type="xsd:string" use="optional"/>
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name="a_SearchCity">
+		<xsd:attribute name="ISO" type="xsd:boolean" use="optional"/>
+		<xsd:attribute name="CountryCode" type="t_CountryCode"/>
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name="a_SearchItemInformation">
+		<xsd:attribute name="ItemType" type="t_ItemType"/>
+		<xsd:attribute name="ItemBundle" type="t_ItemBundle" use="optional"/>
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name="a_SearchLink">
+		<xsd:attribute name="ItemType" type="t_ItemType"/>
+		<xsd:attribute name="LinkType" type="t_LinkType" use="optional"/>
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name="a_Sightseeing">
+		<xsd:attribute name="HasExtraInfo" type="xsd:boolean" use="optional"/>
+		<xsd:attribute name="HasMap" type="xsd:boolean" use="optional"/>
+		<xsd:attribute name="HasPictures" type="xsd:boolean" use="optional"/>
+		<xsd:attribute name="HasFlash" type="xsd:boolean" use="optional"/>
+		<xsd:attribute name="DeparturePointRequired" type="xsd:boolean" use="optional"/>
+		<xsd:attribute name="Recommended" type="xsd:boolean" use="optional" />
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name="a_Transfer">
+		<xsd:attribute name="HasExtraInfo" type="xsd:boolean" use="optional"/>
+		<xsd:attribute name="HasIdeas" type="xsd:boolean" use="optional"/>
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name="a_Vehicle">
+		<xsd:attribute name="Code" type="t_VehicleCode" use="optional"/>
+		<xsd:attribute name="MaximumPassengers" type="t_NumberOfPassengers" use="optional"/>
+		<xsd:attribute name="MaximumLuggage" type="t_NonNegativeInt" use="optional"/>
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name="a_DeDupRoom">
+        <xsd:attribute name="Source" type="xsd:string" use="optional"/>
+	</xsd:attributeGroup>
+</xsd:schema>

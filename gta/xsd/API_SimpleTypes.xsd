@@ -1,0 +1,602 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:annotation>
+		<xsd:documentation>Copyright 2006 (c) Gullivers Travels Associates Ltd. All rights reserved.</xsd:documentation>
+	</xsd:annotation>
+	<xsd:simpleType name="t_AcquirerId">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="2" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_AddressLine">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="40"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_AirportCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="([a-zA-Z0-9%]{0,4})"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_ApartmentCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="2"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_ApartmentUnitCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="2"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_AreaCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="([a-zA-Z0-9%]{0,4})"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_BreakfastTypeCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="([a-zA-Z%]{0,1})"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_CategoryCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="([a-zA-Z0-9%]{1,2})" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_ChildAge">
+		<xsd:restriction base="xsd:integer">
+			<xsd:minInclusive value="2"/>
+			<xsd:maxInclusive value="18"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_CityCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="([a-zA-Z0-9%]{0,4})"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_CityPointCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="10"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_Client">
+		<xsd:restriction base="xsd:integer">
+			<xsd:minInclusive value="1"/>
+			<xsd:maxInclusive value="9999999"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_ConfirmationCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="([A-Z]{2})"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_CommentaryCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="([A-Z]{2})"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_Coordinate">
+		<xsd:restriction base="xsd:double">
+			<xsd:minInclusive value="-999.999999999999999"/>
+			<xsd:maxInclusive value="999.999999999999999"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+ 	<xsd:simpleType name="t_CountryCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="(([a-zA-Z%]){0,2})"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_CountryISOCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="([a-zA-Z]{2})"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_CreditCardCV2">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="(\d{3,4})" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_CreditCardDateMonth">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="(\d\d)" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_CreditCardDateYear">
+	<xsd:restriction base="xsd:string">
+		<xsd:pattern value="(\d{4})" />
+	</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_CreditCardNumber">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="(\d{8,20})" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_CreditCardType">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="(\w{2})" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_CurrencyCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="([a-zA-Z%]{0,3})"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_CurrencyISOCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="([a-zA-Z]{3})"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_Date">
+		<xsd:restriction base="xsd:date"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_DateType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="creation"/>
+			<xsd:enumeration value="departure"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_DayCode">
+		<xsd:restriction base="xsd:integer">
+			<xsd:minInclusive value="1"/>
+			<xsd:maxInclusive value="7"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_DeliveryPoint">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="2"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_DeparturePointCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="6"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_DestinationType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="area"/>
+			<xsd:enumeration value="city"/>
+			<xsd:enumeration value="geocode"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_Duration">
+		<xsd:restriction base="xsd:integer">
+			<xsd:minInclusive value="1"/>
+			<xsd:maxInclusive value="90"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_DurationDays">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="7"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_EMailAddress">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="6"/>
+			<xsd:maxLength value="100"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_ErrorId">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="10"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_FacilityCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="([a-zA-Z0-9%*]{0,3})"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_FacilityType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="apartment"/>
+			<xsd:enumeration value="apartmentunit"/>
+			<xsd:enumeration value="hotel"/>
+			<xsd:enumeration value="hotelroom"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_FlightNumber">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="50"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_FrequencyCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="2"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_GenericCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="10" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_HotelCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="([a-zA-Z0-9%]{0,4})"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_HotelType">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="([a-zA-Z]{2})"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_Input20">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value='([^&lt;&gt;%"&amp;#\\]){0,20}'/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_Input50">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value='([^&lt;&gt;%"&amp;#\\]){0,50}'/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_Input50Mandatory">
+		<xsd:restriction base="xsd:string">
+			<xsd:whiteSpace value="collapse"/>
+			<xsd:pattern value='([^&lt;&gt;%"&amp;#\\]){1,50}'/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_ItemBundle">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="10"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_ItemCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="15"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_ItemReference">
+		<xsd:restriction base="xsd:integer">
+			<xsd:minInclusive value="1"/>
+			<xsd:maxInclusive value="900"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_ItemStatusCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="2"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_ItemType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="apartment" />
+			<xsd:enumeration value="hotel" />
+			<xsd:enumeration value="other" />
+			<xsd:enumeration value="sightseeing" />
+			<xsd:enumeration value="transfer" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_LanguageCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[a-zA-Z* ]{1,2}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_LanguageListCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[0-9a-zA-Z* ]{1,2}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_LanguageISOCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="([a-zA-Z]{2})"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_LanguageSearchCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="(([a-zA-Z%]){0,2})"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_LinkType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="flash"/>
+			<xsd:enumeration value="image"/>
+			<xsd:enumeration value="map"/>
+			<xsd:enumeration value="richmedia"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_ListCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="(([a-zA-Z0-9%]){0,5})"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_ListType">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="20"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_LocationCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="([a-zA-Z0-9%]{0,2})"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_MealCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_Name">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="300" />		
+		</xsd:restriction>		
+	</xsd:simpleType>
+	<xsd:simpleType name="t_NationalityCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="([a-zA-Z]{2})"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_NonNegativeInt">
+		<xsd:restriction base="xsd:integer">
+			<xsd:minInclusive value="0"/>
+			<xsd:maxExclusive value="2147483647"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_NumberOfAdults">
+		<xsd:restriction base="xsd:integer">
+			<xsd:minInclusive value="1"/>
+			<xsd:maxInclusive value="9"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_NumberOfChildren">
+		<xsd:restriction base="xsd:integer">
+			<xsd:minInclusive value="1"/>
+			<xsd:maxInclusive value="5"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_NumberOfCots">
+		<xsd:restriction base="xsd:integer">
+			<xsd:minInclusive value="0"/>
+			<xsd:maxInclusive value="2"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_NumberOfExtraBeds">
+		<xsd:restriction base="xsd:integer">
+			<xsd:minInclusive value="1" />
+			<xsd:maxInclusive value="2" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_NumberOfExtraBedsResponse">
+		<xsd:restriction base="xsd:integer">
+			<xsd:minInclusive value="2" />
+			<xsd:maxInclusive value="4" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_NumberOfPassengers">
+		<xsd:restriction base="xsd:integer">
+			<xsd:minInclusive value="1"/>
+			<xsd:maxInclusive value="99"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_NumberOfReturnedItems">
+		<xsd:restriction base="xsd:integer">
+			<xsd:minInclusive value="1"/>
+			<xsd:maxInclusive value="99999"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_NumberOfRooms">
+		<xsd:restriction base="xsd:integer">
+			<xsd:minInclusive value="1"/>
+			<xsd:maxInclusive value="9"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_OrderBy">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="20"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_OfferCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="10"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_OfferType">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_OfficeLocationCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="(([a-zA-Z0-9%]){1,2})"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_Password">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="20"/>
+			<xsd:whiteSpace value="collapse"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_PaymentCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="15"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_PaxId">
+		<xsd:restriction base="xsd:integer">
+			<xsd:minInclusive value="1"/>
+			<xsd:maxInclusive value="99"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_PaxType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="adult"/>
+			<xsd:enumeration value="child"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_Percentage">
+		<xsd:restriction base="xsd:double">
+			<xsd:minInclusive value="0"/>
+			<xsd:maxInclusive value="100"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_Phone">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="20"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_PortCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="([a-zA-Z0-9%]{0,4})"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_PostCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="10"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_Price">
+		<xsd:restriction base="xsd:double"/>
+	</xsd:simpleType>
+    <xsd:simpleType name="t_PriceType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="person" />
+            <xsd:enumeration value="room" />
+        </xsd:restriction>
+    </xsd:simpleType>
+	<xsd:simpleType name="t_PropertyTypeCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_Rating">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="([0-5]){0,1}|(-1)"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_Reference">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="30"/>
+			<xsd:whiteSpace value="collapse"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_ReferenceSource">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="agent"/>
+			<xsd:enumeration value="api"/>
+			<xsd:enumeration value="client"/>
+			<xsd:enumeration value="ISO"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_ReferenceSourceInput">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="api"/>
+			<xsd:enumeration value="client"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_RemarkCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="3"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_ReportText">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="16000" />		
+		</xsd:restriction>		
+	</xsd:simpleType>	
+	<xsd:simpleType name="t_ReportType">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="20"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_RequestMode">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="ASYNCHRONOUS"/>
+			<xsd:enumeration value="SYNCHRONOUS"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_RoomCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="5"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_SearchName">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="50"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_SpecialCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="2"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_StateCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="(([A-Za-z]){2})" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_StationCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="6"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_StatusCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="2"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_SupplementCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="2"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_SupplierCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="6"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_Time">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="(([0-2]){1}([0-9]){1}([.]){1}([0-5]){1}([0-9]){1})|(([0-9]){1}([.]){1}([0-5]){1}([0-9]){1})"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_TransferPointCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="([a-zA-Z0-9%]{0,1})"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_TransferPointLocationCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="6"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_TransferTypeCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="([a-zA-Z]{2})"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_TransferTypeDescription">
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_Type">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="adult" />
+			<xsd:enumeration value="child" />
+			<xsd:enumeration value="group" />			
+		</xsd:restriction>
+	</xsd:simpleType>	
+	<xsd:simpleType name="t_TypeCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="2" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_URL">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="100"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_UserName">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="30"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_VehicleCode">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="([a-zA-Z0-9%]{0,2})"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="t_Version">
+		<xsd:restriction base="xsd:integer">
+			<xsd:minInclusive value="1"/>
+			<xsd:maxInclusive value="99999"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>
