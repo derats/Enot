@@ -43,7 +43,7 @@ class Enot implements iEnot {
                           'ENOT',
                           array('buffering' => true),
                           PEAR_LOG_DEBUG);
-		self::$memcache = new Memcache;
+		self::$memcache = new Memcache();
 		if(!self::$memcache->connect('localhost', 11211))
 			throw new Exception('Memcache aus!');
 	}

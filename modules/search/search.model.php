@@ -5,13 +5,13 @@ class Search_Model extends StaticDataRequests {
 	public function __construct() {
 		if(empty($_SESSION['lang']))
 			$_SESSION['lang'] = 'RU';
-		$this->language = $_SESSION['lang'];
+		$this->language = $_GET['lang'] ? $_GET['lang'] : $_SESSION['lang'];
 	}
 
 	public function cityComplete() {
 		$tmp = array();
 		foreach($this->get('SearchCity', $_POST['COUNTRY']) as $item) {
-			$tmp[] = array('label' => $_POST['COUNTRY'].': '.$item['name'], 'value' => $item['name'], 'code' => $item['Code']);
+			$tmp[] = array('label' => $_POST['COUNTRY'].': '.$item['text'], 'value' => $item['text'], 'code' => $item['attributes']['code']);
 		}
 		return $tmp;
 	}
@@ -25,11 +25,11 @@ class Search_Model extends StaticDataRequests {
 		return false;
 	}
 
-	public function SearchCountry($arg) {
-		$array = parent::SearchCountry($arg);
-		asort($array);
-		return $array;
-	}
+	// public function SearchCountry($arg) {
+	// 	$array = parent::SearchCountry($arg);
+	// 	//asort($array);
+	// 	return $array;
+	// }
 
 	// public function SearchCity($country, $query) {
 	// 	if(preg_match( '/[\p{Cyrillic}]/u', $query)) {
@@ -37,6 +37,28 @@ class Search_Model extends StaticDataRequests {
 	// 	}
 	// 	return parent::SearchCity($country, $query);
 	// }
+
+	public function duration() {
+		return array(
+			'1' => '1',
+			'2' => '2',
+			'3' => '3',
+			'4' => '4',
+			'5' => '5',
+			'6' => '6',
+			'7' => '7',
+			'8' => '8',
+			'9' => '9');
+	}
+
+	public function rooms() {
+		return array(
+			'1' => '1',
+			'2' => '2',
+			'3' => '3',
+			'4' => '4',
+			'5' => '5');
+	}
 
 	public function Languages() {
 		return array(

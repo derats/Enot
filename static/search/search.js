@@ -11,14 +11,19 @@ $(document).ready(function() {
 	function form_data() {
 		$.getScript("?action=fetchLanguages");
 		$.getScript("?action=fetchCountries");
+		$.getScript("?action=fetchDuration");
+		$.getScript("?action=fetchRoomNumber");
+		$.getScript("?action=fetchRoomCode");
 	}
 
-	$('#countries').change(function() {
-		$('#search_city').val('');
+	var cityInput = $("#searchCity");
+
+	$('#country').change(function() {
+		cityInput.val('');
 	});
 
 	$("#lang").change(function() {
-		$('#search_city').val('');
+		cityInput.val('');
 		data = {
 			action: 'changeLang',
 			language: $('#lang :selected').val()
@@ -37,13 +42,13 @@ $(document).ready(function() {
         });
     }
 
-	$("#search_city").autocomplete({
+	cityInput.autocomplete({
 		source: function(request, response) {
 			$.ajax({
 				dataType: "json",
 				url: "?action=fetchCities",
 				type: "post", 
-				data: {'COUNTRY': $('#countries :selected').val()},
+				data: {'COUNTRY': $('#country :selected').val()},
 				success: function(data) {
 					response(grep(data, request.term));
 				}
@@ -55,5 +60,13 @@ $(document).ready(function() {
 		},
 		minLength: 2
 	});
+
+	
+    $("#dateIn").datepicker();
+
+    $("#goSearch").click(function() {
+    	console.log($('#search').serialize());
+    })
+
 
 });

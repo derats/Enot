@@ -4,16 +4,40 @@
       <div class="starter-template">
         <h1>Enot::power</h1>
         <p class="lead">
-	        <form class="form-inline" role="form">
+	        <form id="search" class="form-inline" role="form">
           <div class="form-group">
-            <select id="lang" class="form-control"></select>
+            <label for="lang">Язык:</label>
+            <select id="lang" name="lang" class="form-control"></select>
           </div>
 	        <div class="form-group">
-					  <select id="countries" class="form-control"></select>
+            <label for="country">Страна:</label>
+					  <select id="country" name="country" class="form-control"></select>
 				  </div>
   				<div class="form-group">
-  				  <input id="search_city" type="text" class="form-control" placeholder="Text input">
+            <label for="searchCity">Город:</label>
+  				  <input id="searchCity" name="searchCity" type="text" class="form-control" placeholder="Несколько букв в названии города">
   				</div>
+          <p>
+          <div class="form-group">
+            <label for="dateIn">Дата заезда:</label>
+            <input id="dateIn" name="dateIn" type="text" class="form-control" placeholder="01/01/2021">
+          </div>
+          <div class="form-group">
+            <label for="roomCode">Тип номера:</label>
+            <select id="roomCode" name="roomCode" class="form-control"></select>
+          </div>
+          <div class="form-group">
+            <label for="roomNumber">Комнат:</label>
+            <select id="roomNumber" name="roomNumber" class="form-control"></select>
+          </div>
+          <div class="form-group">
+            <label for="duration">Продолжительность:</label>
+            <select id="duration" name="duration" class="form-control"></select>
+          </div>
+          </p>
+          <p>
+            <button type="button" id="goSearch" class="btn btn-primary btn-lg">Large button</button>
+          </p>
 			</form>
 		</p>
       </div>
